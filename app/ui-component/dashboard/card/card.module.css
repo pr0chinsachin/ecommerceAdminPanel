@@ -6,8 +6,28 @@
     gap: 20px;
     cursor: pointer;
     width: 100%;
+    color: #fff;
   }
-  
+  .container2 {
+    background-color: #e79a2f;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    gap: 20px;
+    cursor: pointer;
+    width: 100%;
+    color: #fff;
+  }
+  .container3 {
+    background-color: #303096;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    gap: 20px;
+    cursor: pointer;
+    width: 100%;
+    color: #fff;
+  }
   .container:hover{
     background-color: #2e374a;
   }
