@@ -2,7 +2,7 @@
 import Card from "../ui-component/dashboard/card/card";
 //import Chart from "../ui-component/dashboard/chart/chart";
 import styles from "../ui-component/dashboard/dashboard.module.css";
-import Rightbar from "../ui-component/dashboard/rightbar/rightbar";
+//import Rightbar from "../ui-component/dashboard/rightbar/rightbar";
 //import Transactions from "../ui-component/dashboard/transactions/transactions";
 
 const Dashboard = () => {
@@ -13,10 +13,10 @@ const Dashboard = () => {
           {/* {cards.map((item) => (
             <Card item={item} key={item.id} />
           ))} */}
-          <Card/>
-          <Card/>
-          <Card/>
-          <Card/>
+          <Card />
+          <Card />
+          <Card />
+          <Card />
         </div>
         {/* <Transactions />
         <Chart /> */}
