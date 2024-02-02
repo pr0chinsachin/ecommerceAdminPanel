@@ -13,10 +13,10 @@ const Dashboard = () => {
           {/* {cards.map((item) => (
             <Card item={item} key={item.id} />
           ))} */}
+          <Card />
+          {/* <Card/>
           <Card/>
-          <Card/>
-          <Card/>
-          <Card/>
+          <Card/> */}
         </div>
         {/* <Transactions />
         <Chart /> */}
