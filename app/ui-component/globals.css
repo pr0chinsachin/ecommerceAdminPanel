@@ -1,10 +1,15 @@
-:root {
+/* :root {
     --bg: #151c2c;
     --bgSoft: #182237;
     --text: white;
     --textSoft: #b7bac1;
+  } */
+  :root {
+    --bg: #ffffff;
+    --bgSoft: #f2f2f2;
+    --text: rgb(0, 0, 0);
+    --textSoft: #000000;
   }
-  
   * {
     margin: 0;
     padding: 0;
