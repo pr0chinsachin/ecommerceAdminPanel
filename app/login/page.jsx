@@ -3,8 +3,8 @@ import LoginForm from "../ui-component/login/loginForm/loginFrom";
 
 const LoginPage = () => {
   return (
-    <div className={styles.container}>
-      <LoginForm/>
+    <div classNameName={styles.container}>
+      <LoginForm />
     </div>
   );
 };
