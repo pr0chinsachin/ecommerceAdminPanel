@@ -31,12 +31,12 @@ const menuItems = [
       },
       {
         title: "Products",
-        path: "/dashboard/products",
+        path: "/dashboard/product",
         icon: <MdShoppingBag />,
       },
       {
-        title: "Transactions",
-        path: "/dashboard/transactions",
+        title: "Orders",
+        path: "/dashboard/orders",
         icon: <MdAttachMoney />,
       },
     ],
