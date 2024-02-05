@@ -1,5 +1,5 @@
 .container {
-    background-color: var(--bgSoft);
+    background-color: #727e06;
     padding: 20px;
     border-radius: 10px;
     display: flex;
@@ -9,7 +9,7 @@
     color: #fff;
   }
   .container2 {
-    background-color: #e79a2f;
+    background-color: #2fe7e7;
     padding: 20px;
     border-radius: 10px;
     display: flex;
@@ -28,7 +28,26 @@
     width: 100%;
     color: #fff;
   }
+  .container4 {
+    background-color: #02530d;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    gap: 20px;
+    cursor: pointer;
+    width: 100%;
+    color: #fff;
+  }
   .container:hover{
+    background-color: #2e374a;
+  }
+  .container2:hover{
+    background-color: #2e374a;
+  }
+  .container3:hover{
+    background-color: #2e374a;
+  }
+  .container4:hover{
     background-color: #2e374a;
   }
   

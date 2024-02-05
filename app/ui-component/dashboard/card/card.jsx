@@ -52,6 +52,22 @@ const Card = ({ item }) => {
           </span>
         </div>
       </div>
+      <div className={styles.container4}>
+        <MdSupervisedUserCircle size={24} />
+        <div className={styles.texts}>
+          <span className={styles.title}>Total Product Onoard</span>
+          {/* {item.title} */}
+          <span className={styles.number}>100</span>
+          {/* {item.number} */}
+          <span className={styles.detail}>
+            {/* <span className={item.change > 0 ? styles.positive : styles.negative}>
+            {item.change}%
+          </span>{" "}
+          {item.change > 0 ? "more" : "less"} than previous week */}
+            50% up
+          </span>
+        </div>
+      </div>
     </>
   );
 };
