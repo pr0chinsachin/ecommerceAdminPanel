@@ -1,5 +1,6 @@
 "use client";
-import logo from "/public/ism-logo.png"
+import Image from 'next/image'
+import logo from "/public/noavatar.png"
 //import { authenticate } from "@/app/lib/actions";
 //import { useFormState } from "react-dom";
 
@@ -19,10 +20,12 @@ const LoginForm = () => {
     <div className="max-auto rounded overflow-hidden shadow-lg bg-slate-50">
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-        <img
+        <Image
           className="mx-auto w-44 h-44"
-          src="https://lh3.googleusercontent.com/a/ACg8ocJuoyW4z4nvEKwGejnzcOcxgjIOTPqXxDiD7HH3t-j2YZM=s288-c-no"
+          src={logo}
           alt="Your Company"
+          width={200}
+          height={200}
         />
         <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
           Log in to your account

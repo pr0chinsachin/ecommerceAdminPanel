@@ -9,6 +9,7 @@ module.exports = {
     './src/**/*.{js,ts,jsx,tsx,mdx}',
     'node_modules/flowbite-react/lib/esm/**/*.js',
   ],
+  
   theme: {
     screens: {
       'sm': '640px',

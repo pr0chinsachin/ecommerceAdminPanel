@@ -35,6 +35,21 @@ const menuItems = [
     title: "Product",
     list: [
       {
+        title: "Add Category",
+        path: "/dashboard/addCategory",
+        icon: <MdDashboard />,
+      },
+      {
+        title: "Product Lists",
+        path: "/dashboard/products",
+        icon: <MdSupervisedUserCircle />,
+      },
+    ],
+  },
+  {
+    title: "Product",
+    list: [
+      {
         title: "Add Product Category",
         path: "/dashboard/category",
         icon: <MdWork />,
@@ -44,7 +59,7 @@ const menuItems = [
         path: "/dashboard/product",
         icon: <MdAnalytics />,
       },
-      {
+        {
         title: "Order",
         path: "/dashboard/order",
         icon: <MdPeople />,
@@ -112,7 +127,9 @@ const Sidebar = async () => {
           //await signOut();
         }}
       >
-        <button className={styles.logout}>
+        <button className={styles.
+                          
+                          }>
           <MdLogout />
           Logout
         </button>
