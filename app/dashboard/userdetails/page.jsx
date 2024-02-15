@@ -1,6 +1,41 @@
+'use client';
 import React from "react";
+import { use, useEffect, useState } from 'react';
+
+// const UserData = {
+//   // Define the structure of your user data
+//   id: "",
+//   username: "",
+//   email: "",
+//   image:"https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
+// }
 
 const UserDetailsPage = () => {
+  debugger
+  const [userData, setUserData] = useState([]);
+
+  useEffect(() => {
+    // Fetch data when the component mounts
+    fetchData();
+}, []);
+
+const fetchData = async () => {
+  //debugger
+    try {
+        const response = await fetch('http://192.168.254.249:5077/api/User');
+        if (response.ok) {
+            const data = await response.json();
+            console.log(data)
+            setUserData(data);
+        } else {
+            console.error('Failed to fetch data');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
+};
+
+
   return (
     <div className="">
       <div className="container">
@@ -38,6 +73,7 @@ const UserDetailsPage = () => {
                   </tr>
                 </thead>
                 <tbody>
+                {userData.map((user) => (
                   <tr>
                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                       <div className="flex">
@@ -50,19 +86,17 @@ const UserDetailsPage = () => {
                         </div>
                         <div className="ml-3">
                           <p className="text-gray-900 whitespace-no-wrap">
-                            Molly Sanders
+                           {user.username}
                           </p>
-                          <p className="text-gray-600 whitespace-no-wrap">000004</p>
+                          <p className="text-gray-600 whitespace-no-wrap">{user.id}</p>
                         </div>
                       </div>
                     </td>
                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <p className="text-gray-900 whitespace-no-wrap">$20,000</p>
-                      <p className="text-gray-600 whitespace-no-wrap">USD</p>
+                      <p className="text-gray-900 whitespace-no-wrap">Test Static</p>
                     </td>
                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <p className="text-gray-900 whitespace-no-wrap">Sept 28, 2019</p>
-                      <p className="text-gray-600 whitespace-no-wrap">Due in 3 days</p>
+                    <p className="text-gray-900 whitespace-no-wrap"> {user.email}</p>
                     </td>
                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                       <span
@@ -93,7 +127,8 @@ const UserDetailsPage = () => {
                       </button>
                     </td>
                   </tr>
-                  <tr>
+                  ))}
+                  {/* <tr>
                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                       <div className="flex">
                         <div className="flex-shrink-0 w-10 h-10">
@@ -257,7 +292,7 @@ const UserDetailsPage = () => {
                         </svg>
                       </button>
                     </td>
-                  </tr>
+                  </tr> */}
                 </tbody>
               </table>
             </div>

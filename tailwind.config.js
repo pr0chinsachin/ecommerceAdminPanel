@@ -8,6 +8,7 @@ module.exports = {
     // Or if using `src` directory:
     './src/**/*.{js,ts,jsx,tsx,mdx}',
   ],
+  
   theme: {
     screens: {
       'sm': '640px',
@@ -36,5 +37,7 @@ module.exports = {
     // },
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    require("flowbite/plugin")
+  ],
 }

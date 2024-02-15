@@ -29,15 +29,20 @@ const menuItems = [
         path: "/dashboard/userdetails",
         icon: <MdSupervisedUserCircle />,
       },
+    ],
+  },
+  {
+    title: "Product",
+    list: [
       {
-        title: "Products",
-        path: "/dashboard/product",
-        icon: <MdShoppingBag />,
+        title: "Add Category",
+        path: "/dashboard/addCategory",
+        icon: <MdDashboard />,
       },
       {
-        title: "Orders",
-        path: "/dashboard/orders",
-        icon: <MdAttachMoney />,
+        title: "Product Lists",
+        path: "/dashboard/products",
+        icon: <MdSupervisedUserCircle />,
       },
     ],
   },

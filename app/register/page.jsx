@@ -21,7 +21,7 @@ const Register = () => {
     }
       );
   const handleInputChange = (event) =>{
-    setPost({...formData,[event.target.name]:event.target.event})
+    setFormData({...formData,[event.target.name]:event.target.event})
   }
   
   const handleSubmit = async (event) => {
@@ -54,7 +54,7 @@ const Register = () => {
   return (
     <div className='container mx-auto pt-4 pb-4'>
       <h1 className='text-2xl pt-4 pb-4 font-extrabold'>Register Your account</h1>
-      <div class="max-auto rounded overflow-hidden shadow-lg bg-slate-50">
+      <div className="max-auto rounded overflow-hidden shadow-lg bg-slate-50">
         <form className='mr-4 ml-4  pt-4 pb-4' onSubmit={handleSubmit}>
           <div className="space-y-12">
             <div className="border-b border-gray-900/10 pb-12">
@@ -63,15 +63,15 @@ const Register = () => {
 
               <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <div className="sm:col-span-3">
-                  <label htmlFor="first-name" className="block text-sm font-medium leading-6 text-gray-900">
+                  <label htmlFor="firstName" className="block text-sm font-medium leading-6 text-gray-900">
                     First name
                   </label>
                   <div className="mt-2">
                     <input
                       type="text"
-                      name="first-name"
-                      id="first-name"
-                      autoComplete="given-name"
+                      name="firstName"
+                      id="firstName"
+                      autoComplete="given-firstName"
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                       value={formData.firstName} onChange={handleInputChange}
                     />
@@ -79,15 +79,15 @@ const Register = () => {
                 </div>
 
                 <div className="sm:col-span-3">
-                  <label htmlFor="last-name" className="block text-sm font-medium leading-6 text-gray-900">
+                  <label htmlFor="lastName" className="block text-sm font-medium leading-6 text-gray-900">
                     Last name
                   </label>
                   <div className="mt-2">
                     <input
                       type="text"
-                      name="last-name"
-                      id="last-name"
-                      autoComplete="family-name"
+                      name="lastName"
+                      id="lastName"
+                      autoComplete="lastName"
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                       value={formData.lastName} onChange={handleInputChange}
                    />
