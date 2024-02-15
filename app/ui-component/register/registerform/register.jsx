@@ -54,7 +54,7 @@ const RegisterForm = () => {
       <h1 className="text-2xl pt-4 pb-4 font-extrabold">
         Register Your account
       </h1>
-      <div class="max-auto rounded overflow-hidden shadow-lg bg-slate-50">
+      <div className="max-auto rounded overflow-hidden shadow-lg bg-slate-50">
         <form className="mr-4 ml-4  pt-4 pb-4" onSubmit={handleSubmit}>
           <div className="space-y-12">
             <div className="border-b border-gray-900/10 pb-12">

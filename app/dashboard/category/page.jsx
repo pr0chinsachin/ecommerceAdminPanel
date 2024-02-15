@@ -1,4 +1,4 @@
-import AddCategory from "../../ui-component/category/addCategory/addCategory";
+import AddCategory from "../category/addCategory/addCategory";
 
 const Category = () => {
   return (

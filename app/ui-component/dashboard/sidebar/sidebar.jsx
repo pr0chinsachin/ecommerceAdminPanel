@@ -24,6 +24,11 @@ const menuItems = [
         path: "/dashboard",
         icon: <MdDashboard />,
       },
+      {
+        title: "Home Page Image",
+        path: "/dashboard/carouselimage",
+        icon: <MdDashboard />,
+      },
     ],
   },
   {
