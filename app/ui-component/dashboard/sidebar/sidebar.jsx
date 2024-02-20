@@ -59,7 +59,7 @@ const menuItems = [
         path: "/dashboard/product",
         icon: <MdAnalytics />,
       },
-        {
+      {
         title: "Order",
         path: "/dashboard/order",
         icon: <MdPeople />,
@@ -127,9 +127,7 @@ const Sidebar = async () => {
           //await signOut();
         }}
       >
-        <button className={styles.
-                          
-                          }>
+        <button className={styles.logout}>
           <MdLogout />
           Logout
         </button>
