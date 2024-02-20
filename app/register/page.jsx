@@ -1,5 +1,8 @@
+"use client";
 import React from "react";
 import RegisterForm from "../ui-component/register/registerform/register";
+import { useState } from "react";
+
 const Register = () => {
   const [formData, setFormData] = useState({
     id: "121",
