@@ -9,6 +9,7 @@ import {
   Dropdown,
 } from "flowbite-react";
 import { useState } from "react";
+//import CategoryList from "./categoryList/categoryList";
 
 const AddCategory = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -46,39 +47,13 @@ const AddCategory = () => {
                   required
                 />
               </div>
-              <div className="grid grid-cols-2 gap-2">
-                <div>
-                  <div className="mb-2 block ">
-                    <Label
-                      htmlFor="dropdown"
-                      value="Need Parent Sub Category"
-                    />
-                  </div>
-                  <Dropdown label="Dropdown button" dismissOnClick={false}>
-                    <Dropdown.Item>Yes</Dropdown.Item>
-                    <Dropdown.Item>No</Dropdown.Item>
-                  </Dropdown>
-                </div>
-                <div>
-                  <div className="mb-2 block">
-                    <Label
-                      htmlFor="dropdown-child"
-                      value="Need Child Sub Category"
-                    />
-                  </div>
-                  <Dropdown label="Dropdown button" dismissOnClick={false}>
-                    <Dropdown.Item>Yes</Dropdown.Item>
-                    <Dropdown.Item>No</Dropdown.Item>
-                  </Dropdown>
-                </div>
-              </div>
-
               <div className="w-full">
                 <Button>Add</Button>
               </div>
             </div>
           </Modal.Body>
         </Modal>
+        {/* <CategoryList /> */}
       </div>
     </>
   );
