@@ -1,5 +1,6 @@
 import React from "react";
 import { FileInput, Label } from "flowbite-react";
+import ImageDetailsList from "./imageDetailsList/imageDetailsList";
 
 const CarouselImage = () => {
   return (
@@ -28,6 +29,9 @@ const CarouselImage = () => {
             Save
           </button>
         </form>
+      </div>
+      <div className="mt-10 mb-10">
+        <ImageDetailsList />
       </div>
     </div>
   );

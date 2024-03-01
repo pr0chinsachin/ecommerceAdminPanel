@@ -35,28 +35,13 @@ const menuItems = [
     title: "Product",
     list: [
       {
-        title: "Add Category",
-        path: "/dashboard/addCategory",
-        icon: <MdDashboard />,
-      },
-      {
-        title: "Product Lists",
-        path: "/dashboard/products",
-        icon: <MdSupervisedUserCircle />,
-      },
-    ],
-  },
-  {
-    title: "Product",
-    list: [
-      {
         title: "Add Product Category",
         path: "/dashboard/category",
         icon: <MdWork />,
       },
       {
         title: "Product Lists",
-        path: "/dashboard/product",
+        path: "/dashboard/products",
         icon: <MdAnalytics />,
       },
       {
