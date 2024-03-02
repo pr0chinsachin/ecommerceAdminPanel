@@ -1,5 +1,5 @@
 import Image from "next/image";
-import MenuLink from "./menuLink/menuLink";
+import MenuLink from "./menulink/menuLink";
 import styles from "./sidebar.module.css";
 import {
   MdDashboard,
@@ -35,31 +35,16 @@ const menuItems = [
     title: "Product",
     list: [
       {
-        title: "Add Category",
-        path: "/dashboard/addCategory",
-        icon: <MdDashboard />,
-      },
-      {
-        title: "Product Lists",
-        path: "/dashboard/products",
-        icon: <MdSupervisedUserCircle />,
-      },
-    ],
-  },
-  {
-    title: "Product",
-    list: [
-      {
         title: "Add Product Category",
         path: "/dashboard/category",
         icon: <MdWork />,
       },
       {
         title: "Product Lists",
-        path: "/dashboard/product",
+        path: "/dashboard/products",
         icon: <MdAnalytics />,
       },
-        {
+      {
         title: "Order",
         path: "/dashboard/order",
         icon: <MdPeople />,
@@ -127,9 +112,7 @@ const Sidebar = async () => {
           //await signOut();
         }}
       >
-        <button className={styles.
-                          
-                          }>
+        <button className={styles.logout}>
           <MdLogout />
           Logout
         </button>

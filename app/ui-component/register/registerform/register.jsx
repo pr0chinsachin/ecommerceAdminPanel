@@ -19,7 +19,7 @@ const RegisterForm = () => {
     uploadImage: "",
   });
   const handleInputChange = (event) => {
-    setPost({ ...formData, [event.target.name]: event.target.event });
+    setFormData({ ...formData, [event.target.name]: event.target.event });
   };
 
   const handleSubmit = async (event) => {
