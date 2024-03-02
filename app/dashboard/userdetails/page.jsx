@@ -101,7 +101,7 @@ const UserDetailsPage = () => {
                             aria-hidden
                             className="absolute inset-0 bg-green-200 opacity-50 rounded-full"
                           ></span>
-                          <span className="relative">Paid</span>
+                          <span className="relative">Active</span>
                         </span>
                       </td>
                       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm text-right">

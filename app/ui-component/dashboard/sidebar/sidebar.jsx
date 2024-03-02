@@ -57,6 +57,46 @@ const menuItems = [
     ],
   },
   {
+    title: "Repair",
+    list: [
+      {
+        title: "Add Repair",
+        path: "/dashboard/category",
+        icon: <MdWork />,
+      },
+      {
+        title: "Repair Lists",
+        path: "/dashboard/products",
+        icon: <MdAnalytics />,
+      },
+      {
+        title: "Repair Inquery",
+        path: "/dashboard/order",
+        icon: <MdPeople />,
+      },
+      {
+        title: "Repair Customer Details",
+        path: "/dashboard/customerdetails",
+        icon: <MdPeople />,
+      },
+    ],
+  },
+  {
+    title: "Compare",
+    list: [
+      {
+        title: "Compare Model",
+        path: "/dashboard/category",
+        icon: <MdWork />,
+      },
+      {
+        title: "Compare Model Lists",
+        path: "/dashboard/products",
+        icon: <MdAnalytics />,
+      },
+    ],
+  },
+  {
     title: "User",
     list: [
       {
