@@ -2,6 +2,7 @@
 import React from "react";
 import { useState } from "react";
 import { FileInput, Label, Button, TextInput } from "flowbite-react";
+import { useRouter } from "next/navigation";
 
 const RegisterForm = () => {
   const [formData, setFormData] = useState({
@@ -22,6 +23,8 @@ const RegisterForm = () => {
     IsActive: true,
     Approved: true,
   });
+
+  const router = useRouter();
 
   // Handle input change for all form fields
   const handleInputChange = (event) => {
@@ -51,7 +54,7 @@ const RegisterForm = () => {
       if (response.ok) {
         console.log("Form data submitted successfully");
         alert("Form data submitted successfully");
-      } else {
+        router.push("/login");
         const errorMessage = await response.text();
         console.error(`Failed to submit form data: ${errorMessage}`);
         alert(`Failed to submit form data: ${errorMessage}`);
@@ -170,7 +173,7 @@ const RegisterForm = () => {
                   </div>
                 </div>
 
-                <div className="sm:col-span-2 sm:col-start-1">
+                {/* <div className="sm:col-span-2 sm:col-start-1">
                   <Label htmlFor="city" value="City" />
                   <div className="mt-2">
                     <TextInput
@@ -182,7 +185,7 @@ const RegisterForm = () => {
                       onChange={handleInputChange}
                     />
                   </div>
-                </div>
+                </div> */}
 
                 <div className="sm:col-span-2">
                   <Label htmlFor="occupation" value="Occupation" />
@@ -225,7 +228,7 @@ const RegisterForm = () => {
                   </div>
                 </div> */}
 
-                <div className="col-span-full">
+                <div className="sm:col-span-2">
                   <Label htmlFor="file-upload" value="Upload Image" />
                   <div className="mt-2">
                     <FileInput

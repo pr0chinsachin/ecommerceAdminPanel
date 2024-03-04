@@ -97,11 +97,21 @@ const menuItems = [
     ],
   },
   {
+    title: "Customer",
+    list: [
+      {
+        title: "Registered Customer",
+        path: "/dashboard/userdetails",
+        icon: <MdSupervisedUserCircle />,
+      },
+    ],
+  },
+  {
     title: "User",
     list: [
       {
-        title: "Users",
-        path: "/dashboard/userdetails",
+        title: "Users Profile",
+        path: "/dashboard/userprofile",
         icon: <MdSupervisedUserCircle />,
       },
       {
