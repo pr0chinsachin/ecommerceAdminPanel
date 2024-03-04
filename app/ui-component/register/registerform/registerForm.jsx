@@ -173,7 +173,7 @@ const RegisterForm = () => {
                   </div>
                 </div>
 
-                <div className="sm:col-span-2 sm:col-start-1">
+                {/* <div className="sm:col-span-2 sm:col-start-1">
                   <Label htmlFor="city" value="City" />
                   <div className="mt-2">
                     <TextInput
@@ -185,7 +185,7 @@ const RegisterForm = () => {
                       onChange={handleInputChange}
                     />
                   </div>
-                </div>
+                </div> */}
 
                 <div className="sm:col-span-2">
                   <Label htmlFor="occupation" value="Occupation" />
@@ -228,7 +228,7 @@ const RegisterForm = () => {
                   </div>
                 </div> */}
 
-                <div className="col-span-full">
+                <div className="sm:col-span-2">
                   <Label htmlFor="file-upload" value="Upload Image" />
                   <div className="mt-2">
                     <FileInput
