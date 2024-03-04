@@ -2,6 +2,7 @@
 import React from "react";
 import { useState } from "react";
 import { FileInput, Label, Button, TextInput } from "flowbite-react";
+import { useRouter } from "next/navigation";
 
 const RegisterForm = () => {
   const [formData, setFormData] = useState({
@@ -22,6 +23,8 @@ const RegisterForm = () => {
     IsActive: true,
     Approved: true,
   });
+
+  const router = useRouter();
 
   // Handle input change for all form fields
   const handleInputChange = (event) => {
@@ -51,7 +54,7 @@ const RegisterForm = () => {
       if (response.ok) {
         console.log("Form data submitted successfully");
         alert("Form data submitted successfully");
-      } else {
+        router.push("/login");
         const errorMessage = await response.text();
         console.error(`Failed to submit form data: ${errorMessage}`);
         alert(`Failed to submit form data: ${errorMessage}`);
