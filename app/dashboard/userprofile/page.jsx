@@ -1,12 +1,17 @@
 import React from "react";
 import { Card } from "flowbite-react";
 import { PaperClipIcon } from "@heroicons/react/20/solid";
+import { Avatar } from "flowbite-react";
 
 const UserProfile = () => {
   return (
     <div className="mt-10">
       <Card className="max-auto">
         <h1 className="text-2xl text-cyan-600">User Profile</h1>
+        <div className="items-start">
+          <Avatar src={"/noavatar.png"} size="xl" rounded />
+        </div>
+
         <div className="px-4 sm:px-0">
           <h3 className="text-base font-semibold leading-7 text-gray-900">
             Applicant Information
