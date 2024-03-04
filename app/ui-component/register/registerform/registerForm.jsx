@@ -1,54 +1,52 @@
 "use client";
 import React from "react";
 import { useState } from "react";
-import {
-  FileInput, Label, Button,
-  TextInput
-} from 'flowbite-react';
+import { FileInput, Label, Button, TextInput } from "flowbite-react";
 
 const RegisterForm = () => {
   const [formData, setFormData] = useState({
-    id: "",
-    firstName: "",
-    lastName: "",
-    password: "",
-    retypePassword: "",
-    address: "",
-    email: "",
-    phoneNumber: "",
-    city: "",
-    occupation: "",
-    post: "",
-    userName:"",
-    uploadImage: null,
-    // regRole:"1",
-    // can_view_all_data:true,
-    // can_view_all_department:true,
-    // IsActive:true,
-    // approved:true,
+    FirstName: "",
+    LastName: "",
+    Password: "",
+    ConfirmPassword: "",
+    Address: "",
+    ContactNo: "",
+    Email: "",
+    Occupation: "",
+    Post: "",
+    UserName: "",
+    ProfileImg: null,
+    RegRoles: "1",
+    can_view_all_data: true,
+    can_view_all_department: true,
+    IsActive: true,
+    Approved: true,
   });
 
-// Handle input change for all form fields
-const handleInputChange = (event) => {
-  const { name, value, type, files } = event.target;
-  // For file input, use files[0]
-  const inputValue = type === 'file' ? files[0] : value;
-  setFormData({ ...formData, [name]: inputValue });
-  console.log(setFormData)
-};
+  // Handle input change for all form fields
+  const handleInputChange = (event) => {
+    debugger;
+    const { name, value, type } = event.target;
+    console.log(event.target);
 
-// Handle form submission
+    // For file input, use files[0]
+    const inputValue = type === "file" ? event.target.files[0] : value;
+
+    setFormData({ ...formData, [name]: inputValue });
+    console.log(formData);
+  };
+
+  // Handle form submission
   const handleSubmit = async (event) => {
     debugger;
     event.preventDefault();
     try {
-      const response = await fetch("http://192.168.254.249:5077/api/User", {
+      const response = await fetch("http://192.168.254.249:5077/api/Account", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
-        
       });
       if (response.ok) {
         console.log("Form data submitted successfully");
@@ -60,7 +58,7 @@ const handleInputChange = (event) => {
       }
     } catch (error) {
       console.error("Error:", error);
-    } 
+    }
   };
 
   return (
@@ -81,10 +79,10 @@ const handleInputChange = (event) => {
                   <div className="mt-2">
                     <TextInput
                       type="text"
-                      name="firstName"
-                      id="firstName"
-                      autoComplete="given-firstName"
-                      value={formData.firstName}
+                      name="FirstName"
+                      id="FirstName"
+                      autoComplete="FirstName"
+                      value={formData.FirstName}
                       onChange={handleInputChange}
                       required
                     />
@@ -96,10 +94,10 @@ const handleInputChange = (event) => {
                   <div className="mt-2">
                     <TextInput
                       type="text"
-                      name="lastName"
-                      id="lastName"
-                      autoComplete="lastName"
-                      value={formData.lastName}
+                      name="LastName"
+                      id="LastName"
+                      autoComplete="LastName"
+                      value={formData.LastName}
                       onChange={handleInputChange}
                     />
                   </div>
@@ -108,11 +106,11 @@ const handleInputChange = (event) => {
                   <Label htmlFor="password" value="Password" />
                   <div className="mt-2">
                     <TextInput
-                      type="password"
-                      name="password"
-                      id="password"
+                      type="Password"
+                      name="Password"
+                      id="Password"
                       autoComplete="password"
-                      value={formData.password}
+                      value={formData.Password}
                       onChange={handleInputChange}
                     />
                   </div>
@@ -122,10 +120,10 @@ const handleInputChange = (event) => {
                   <div className="mt-2">
                     <TextInput
                       type="password"
-                      name="retypePassword"
-                      id="retypePassword"
-                      autoComplete="retypePassword"
-                      value={formData.retypePassword}
+                      name="ConfirmPassword"
+                      id="ConfirmPassword"
+                      autoComplete="ConfirmPassword"
+                      value={formData.ConfirmPassword}
                       onChange={handleInputChange}
                     />
                   </div>
@@ -135,10 +133,10 @@ const handleInputChange = (event) => {
                   <div className="mt-2">
                     <TextInput
                       type="text"
-                      name="address"
-                      id="address"
-                      autoComplete="address"
-                      value={formData.address}
+                      name="Address"
+                      id="Address"
+                      autoComplete="Address"
+                      value={formData.Address}
                       onChange={handleInputChange}
                     />
                   </div>
@@ -147,11 +145,11 @@ const handleInputChange = (event) => {
                   <Label htmlFor="email" value="Email address" />
                   <div className="mt-2">
                     <TextInput
-                      id="email"
-                      name="email"
+                      id="Email"
+                      name="Email"
                       type="email"
-                      autoComplete="email"
-                      value={formData.email}
+                      autoComplete="Email"
+                      value={formData.Email}
                       onChange={handleInputChange}
                       placeholder="name@abc.com"
                     />
@@ -163,10 +161,10 @@ const handleInputChange = (event) => {
                   <div className="mt-2">
                     <TextInput
                       type="text"
-                      name="phoneNumber"
-                      id="phoneNumber"
-                      autoComplete="phoneNumber"
-                      value={formData.phoneNumber}
+                      name="ContactNo"
+                      id="ContactNo"
+                      autoComplete="ContactNo"
+                      value={formData.ContactNo}
                       onChange={handleInputChange}
                     />
                   </div>
@@ -177,10 +175,10 @@ const handleInputChange = (event) => {
                   <div className="mt-2">
                     <TextInput
                       type="text"
-                      name="city"
-                      id="city"
-                      autoComplete="city"
-                      value={formData.city}
+                      name="UserName"
+                      id="UserName"
+                      autoComplete="UserName"
+                      value={formData.UserName}
                       onChange={handleInputChange}
                     />
                   </div>
@@ -191,10 +189,10 @@ const handleInputChange = (event) => {
                   <div className="mt-2">
                     <TextInput
                       type="text"
-                      name="occupation"
-                      id="occupation"
-                      autoComplete="occupation"
-                      value={formData.occupation}
+                      name="Occupation"
+                      id="Occupation"
+                      autoComplete="Occupation"
+                      value={formData.Occupation}
                       onChange={handleInputChange}
                     />
                   </div>
@@ -205,15 +203,15 @@ const handleInputChange = (event) => {
                   <div className="mt-2">
                     <TextInput
                       type="text"
-                      name="post"
-                      id="post"
-                      autoComplete="post"
-                      value={formData.post}
+                      name="Post"
+                      id="Post"
+                      autoComplete="Post"
+                      value={formData.Post}
                       onChange={handleInputChange}
                     />
                   </div>
                 </div>
-                <div className="sm:col-span-3">
+                {/* <div className="sm:col-span-3">
                   <Label htmlFor="username" value="User Name" />
                   <div className="mt-2">
                     <TextInput
@@ -225,15 +223,17 @@ const handleInputChange = (event) => {
                       onChange={handleInputChange}
                     />
                   </div>
-                </div>
+                </div> */}
 
-
-                <div className="sm:col-span-3">
+                <div className="col-span-full">
                   <Label htmlFor="file-upload" value="Upload Image" />
                   <div className="mt-2">
                     <FileInput
-                      autoComplete="uploadImage"
-                      value={formData.uploadImage}
+                      name="ProfileImg"
+                      id="ProfileImg"
+                      autoComplete="ProfileImg"
+                      accept="image/*"
+                      //value={formData.ProfileImg}
                       onChange={handleInputChange}
                     />
                   </div>
