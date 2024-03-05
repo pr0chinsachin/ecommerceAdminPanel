@@ -1,7 +1,7 @@
 import React from "react";
 import { Card } from "flowbite-react";
 import { PaperClipIcon } from "@heroicons/react/20/solid";
-import { Avatar } from "flowbite-react";
+import Image from "next/image";
 
 const UserProfile = () => {
   return (
@@ -9,7 +9,13 @@ const UserProfile = () => {
       <Card className="max-auto">
         <h1 className="text-2xl text-cyan-600">User Profile</h1>
         <div className="items-start">
-          <Avatar src={"/noavatar.png"} size="xl" rounded />
+          <Image
+            src={"/noavatar.png"}
+            width={200}
+            height={200}
+            alt="User Profile"
+            className="rounded-full"
+          />
         </div>
 
         <div className="px-4 sm:px-0">
