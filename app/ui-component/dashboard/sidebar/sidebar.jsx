@@ -40,7 +40,7 @@ const menuItems = [
         icon: <MdWork />,
       },
       {
-        title: "Product Lists",
+        title: "Add Product",
         path: "/dashboard/products",
         icon: <MdAnalytics />,
       },

@@ -2,6 +2,7 @@
 import React from "react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { HiOutlineEye } from "react-icons/hi";
 
 const userData = {
   // Define the structure of your user data
@@ -52,10 +53,6 @@ const ImageDetailsList = () => {
                     <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
                       Action
                     </th>
-                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                      Status
-                    </th>
-                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100"></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -76,30 +73,65 @@ const ImageDetailsList = () => {
                       </p>
                     </td>
                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <p className="text-gray-900 whitespace-no-wrap">view</p>
-                    </td>
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-                        <span
-                          aria-hidden
-                          className="absolute inset-0 bg-green-200 opacity-50 rounded-full"
-                        ></span>
-                        <span className="relative">Paid</span>
-                      </span>
-                    </td>
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm text-right">
-                      <button
-                        type="button"
-                        className="inline-block text-gray-500 hover:text-gray-700"
+                      <a
+                        href="#"
+                        className="text-blue-500 mr-2 hover:text-blue-700"
                       >
                         <svg
-                          className="inline-block h-6 w-6 fill-current"
+                          className="w-4 h-4 inline-block"
+                          fill="none"
+                          strokeLinecap={2}
+                          strokeLinejoin={2}
+                          strokeWidth={2}
                           viewBox="0 0 24 24"
+                          stroke="currentColor"
                         >
-                          <path d="M12 6a2 2 0 110-4 2 2 0 010 4zm0 8a2 2 0 110-4 2 2 0 010 4zm-2 6a2 2 0 104 0 2 2 0 00-4 0z" />
+                          <path d="M19 9l-7 7-7-7"></path>
                         </svg>
-                      </button>
+                        View
+                      </a>
+                      <a
+                        href="#"
+                        className="text-green-500 mr-2 hover:text-green-700"
+                      >
+                        <svg
+                          className="w-4 h-4 inline-block"
+                          fill="none"
+                          strokeLinecap={2}
+                          strokeLinejoin={2}
+                          strokeWidth={2}
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path d="M5 15v3h3m4-3v3h3m-7 0l9-9-3-3-9 9"></path>
+                        </svg>
+                        Edit
+                      </a>
+                      <a href="#" className="text-red-500 hover:text-red-700">
+                        <svg
+                          className="w-4 h-4 inline-block"
+                          fill="none"
+                          strokeLinecap={2}
+                          strokeLinejoin={2}
+                          strokeWidth={2}
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                        Delete
+                      </a>
                     </td>
+                    {/* <td className="border-b border-gray-200 bg-white text-sm">
+                      <p className="text-gray-900 whitespace-no-wrap">
+                        <HiOutlineEye />
+                      </p>
+                    </td>
+                    <td className="border-b border-gray-200 bg-white text-sm">
+                      <p className="text-gray-900 whitespace-no-wrap">
+                        <HiOutlineEye />
+                      </p>
+                    </td> */}
                   </tr>
                   {/* ))} */}
                 </tbody>
