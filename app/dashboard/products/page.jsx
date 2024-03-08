@@ -13,7 +13,7 @@ import {
 } from "flowbite-react";
 import { useRouter } from "next/navigation";
 
-const ProductPage = ({ placeholder }) => {
+const ProductPage = () => {
   const [formData, setFormData] = useState({
     productName: "",
     category: "",
