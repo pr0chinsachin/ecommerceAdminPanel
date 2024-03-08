@@ -61,22 +61,22 @@ const menuItems = [
     list: [
       {
         title: "Add Repair",
-        path: "/dashboard/category",
+        path: "",
         icon: <MdWork />,
       },
       {
         title: "Repair Lists",
-        path: "/dashboard/products",
+        path: "",
         icon: <MdAnalytics />,
       },
       {
         title: "Repair Inquery",
-        path: "/dashboard/order",
+        path: "",
         icon: <MdPeople />,
       },
       {
         title: "Repair Customer Details",
-        path: "/dashboard/customerdetails",
+        path: "",
         icon: <MdPeople />,
       },
     ],
@@ -86,12 +86,12 @@ const menuItems = [
     list: [
       {
         title: "Compare Model",
-        path: "/dashboard/category",
+        path: "",
         icon: <MdWork />,
       },
       {
         title: "Compare Model Lists",
-        path: "/dashboard/products",
+        path: "",
         icon: <MdAnalytics />,
       },
     ],

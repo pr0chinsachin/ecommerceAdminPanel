@@ -5,7 +5,7 @@ import ImageDetailsList from "./imageDetailsList/imageDetailsList";
 const CarouselImage = () => {
   return (
     <div>
-      <h1 className="text-2xl pt-4 pb-4 font-extrabold">
+      <h1 className="text-2xl pt-4 pb-4 text-slate-50 font-extrabold">
         Upload Image for Carousel Slider
       </h1>
       <div className="max-auto rounded overflow-hidden shadow-lg bg-slate-50">
