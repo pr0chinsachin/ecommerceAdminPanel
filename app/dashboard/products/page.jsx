@@ -1,10 +1,19 @@
 "use client";
 import React from "react";
-import { useState } from "react";
-import { FileInput, Label, Button, TextInput, Textarea, Datepicker, Dropdown } from "flowbite-react";
+import { useState, useRef } from "react";
+import JoditEditor from "jodit-react";
+import {
+  FileInput,
+  Label,
+  Button,
+  TextInput,
+  Textarea,
+  Datepicker,
+  Dropdown,
+} from "flowbite-react";
 import { useRouter } from "next/navigation";
 
-const ProductPage = () => {
+const ProductPage = ({ placeholder }) => {
   const [formData, setFormData] = useState({
     productName: "",
     category: "",
@@ -22,26 +31,28 @@ const ProductPage = () => {
     can_view_all_department: true,
     IsActive: true,
     Approved: true,
+    description: "", // Added description field
+    details: "", // Added details field
+    uploadVideo: null, // Added uploadVideo field
   });
 
   const router = useRouter();
+  const editor = useRef(null);
 
   // Handle input change for all form fields
   const handleInputChange = (event) => {
-    debugger;
     const { name, value, type } = event.target;
-    console.log(event.target);
-
-    // For file input, use files[0]
     const inputValue = type === "file" ? event.target.files[0] : value;
-
     setFormData({ ...formData, [name]: inputValue });
-    console.log(formData);
+  };
+
+  // Handle Jodit Editor content change
+  const handleEditorChange = (newContent) => {
+    setFormData({ ...formData, description: newContent });
   };
 
   // Handle form submission
   const handleSubmit = async (event) => {
-    debugger;
     event.preventDefault();
     try {
       const response = await fetch("http://192.168.254.249:5077/api/Account", {
@@ -55,6 +66,7 @@ const ProductPage = () => {
         console.log("Form data submitted successfully");
         alert("Form data submitted successfully");
         router.push("/login");
+      } else {
         const errorMessage = await response.text();
         console.error(`Failed to submit form data: ${errorMessage}`);
         alert(`Failed to submit form data: ${errorMessage}`);
@@ -66,9 +78,9 @@ const ProductPage = () => {
 
   return (
     <div className="container mx-auto pt-4 pb-10">
-      <h1 className="text-2xl pt-4 pb-4  font-extrabold">
-        Add Product
-      </h1>
+      {/* <h1 className="text-2xl pt-4 pb-4 text-slate-50 font-extrabold">
+          Add Product
+        </h1> */}
       <div className="max-auto rounded overflow-hidden shadow-lg bg-slate-50">
         <form className="mr-4 ml-4  pt-4 pb-4" onSubmit={handleSubmit}>
           <div className="space-y-12">
@@ -122,13 +134,13 @@ const ProductPage = () => {
                       value={formData.subCategory}
                       onChange={handleInputChange}
                     /> */}
-
                     <Dropdown label="Choose Sub Category">
                       <Dropdown.Item>Sub Category 1</Dropdown.Item>
                       <Dropdown.Item>Sub Category 2</Dropdown.Item>
                       <Dropdown.Item>Sub Category 3</Dropdown.Item>
                       <Dropdown.Item>Sub Category 4</Dropdown.Item>
-                    </Dropdown>                  </div>
+                    </Dropdown>{" "}
+                  </div>
                 </div>
                 <div className="sm:col-span-3">
                   <Label htmlFor="price" value="Price" />
@@ -174,13 +186,23 @@ const ProductPage = () => {
                 <div className="col-span-full">
                   <Label htmlFor="Description" value="Description" />
                   <div className="mt-2">
-                    <Textarea
+                    {/* <Textarea
                       type="description"
                       name="description"
                       id="description"
                       autoComplete="description"
                       value={formData.description}
                       onChange={handleInputChange}
+                    /> */}
+                    <JoditEditor
+                      ref={editor}
+                      value={formData.description}
+                      config={{
+                        readonly: false,
+                        placeholder: "Start typing...",
+                      }}
+                      tabIndex={1}
+                      onBlur={(newContent) => handleEditorChange(newContent)}
                     />
                   </div>
                 </div>
@@ -202,13 +224,15 @@ const ProductPage = () => {
                 <div className="col-span-full">
                   <Label htmlFor="details" value="Details" />
                   <div className="mt-2">
-                    <Textarea
-                      type="text"
-                      name="details"
-                      id="details"
-                      autoComplete="details"
+                    <JoditEditor
+                      ref={editor}
                       value={formData.details}
-                      onChange={handleInputChange}
+                      config={{
+                        readonly: false,
+                        placeholder: "Start typing...",
+                      }}
+                      tabIndex={1}
+                      onBlur={(newContent) => handleEditorChange(newContent)}
                     />
                   </div>
                 </div>

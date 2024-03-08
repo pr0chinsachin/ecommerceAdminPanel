@@ -26,15 +26,17 @@
     background-color: #2e374a;
     padding: 10px;
     border-radius: 10px;
+    color: #fff;
   }
   
   .input {
     background-color: transparent;
     border: none;
-    color: var(--text);
+    color: #fff;
   }
   
   .icons{
     display: flex;
     gap: 20px;
+    color: #fff;
   }
