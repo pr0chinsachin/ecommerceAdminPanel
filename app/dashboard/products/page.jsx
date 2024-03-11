@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { useState, useRef } from "react";
-import JoditEditor from "jodit-react";
+//import JoditEditor from "jodit-react";
 import {
   FileInput,
   Label,
@@ -12,8 +12,10 @@ import {
   Dropdown,
 } from "flowbite-react";
 import { useRouter } from "next/navigation";
+import dynamic from "next/dynamic";
 
 const ProductPage = () => {
+  const JoditEditor = dynamic(() => import("jodit-react"), { ssr: false });
   const [formData, setFormData] = useState({
     productName: "",
     category: "",
