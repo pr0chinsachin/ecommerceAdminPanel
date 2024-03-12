@@ -2,6 +2,7 @@
 import React from "react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { Table, Pagination } from "flowbite-react";
 
 // const UserData = {
 //   // Define the structure of your user data
@@ -14,6 +15,9 @@ import { useEffect, useState } from "react";
 const UserDetailsPage = () => {
   debugger;
   const [userData, setUserData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1); // Define state for current page
+
+  const onPageChange = (page) => setCurrentPage(page); // Function to handle page change
 
   useEffect(() => {
     // Fetch data when the component mounts
@@ -42,28 +46,26 @@ const UserDetailsPage = () => {
         <div>
           <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
             <div className="inline-block min-w-full shadow-md rounded-lg overflow-hidden">
-              <table className="min-w-full leading-normal">
-                <thead>
-                  <tr>
-                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                      ID
-                    </th>
-                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                      Full Name
-                    </th>
-                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                      Email
-                    </th>
-                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                      Status
-                    </th>
-                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100"></th>
-                  </tr>
-                </thead>
-                <tbody>
+              <Table>
+                <Table.Head>
+                  <Table.HeadCell className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                    ID
+                  </Table.HeadCell>
+                  <Table.HeadCell className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                    Full Name
+                  </Table.HeadCell>
+                  <Table.HeadCell className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                    Email
+                  </Table.HeadCell>
+                  <Table.HeadCell className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                    Status
+                  </Table.HeadCell>
+                  <Table.HeadCell className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100"></Table.HeadCell>
+                </Table.Head>
+                <Table.Body>
                   {userData.map((user) => (
-                    <tr key={user.id}>
-                      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                    <Table.Row key={user.id}>
+                      <Table.Cell className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                         <div className="flex">
                           <div className="flex-shrink-0 w-10 h-10">
                             <Image
@@ -83,19 +85,19 @@ const UserDetailsPage = () => {
                             </p>
                           </div>
                         </div>
-                      </td>
-                      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                      </Table.Cell>
+                      <Table.Cell className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                         <p className="text-gray-900 whitespace-no-wrap">
                           Test Static
                         </p>
-                      </td>
-                      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                      </Table.Cell>
+                      <Table.Cell className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                         <p className="text-gray-900 whitespace-no-wrap">
                           {" "}
                           {user.email}
                         </p>
-                      </td>
-                      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                      </Table.Cell>
+                      <Table.Cell className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                         <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
                           <span
                             aria-hidden
@@ -103,8 +105,8 @@ const UserDetailsPage = () => {
                           ></span>
                           <span className="relative">Active</span>
                         </span>
-                      </td>
-                      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm text-right">
+                      </Table.Cell>
+                      <Table.Cell className="px-5 py-5 border-b border-gray-200 bg-white text-sm text-right">
                         <button
                           type="button"
                           className="inline-block text-gray-500 hover:text-gray-700"
@@ -116,13 +118,21 @@ const UserDetailsPage = () => {
                             <path d="M12 6a2 2 0 110-4 2 2 0 010 4zm0 8a2 2 0 110-4 2 2 0 010 4zm-2 6a2 2 0 104 0 2 2 0 00-4 0z" />
                           </svg>
                         </button>
-                      </td>
-                    </tr>
+                      </Table.Cell>
+                    </Table.Row>
                   ))}
-                </tbody>
-              </table>
+                </Table.Body>
+              </Table>
             </div>
           </div>
+        </div>
+        <div className="flex overflow-x-auto">
+          <Pagination
+            currentPage={currentPage}
+            totalPages={100}
+            onPageChange={onPageChange}
+            showIcons
+          />
         </div>
       </div>
     </div>
