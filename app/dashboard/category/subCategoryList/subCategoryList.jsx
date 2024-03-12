@@ -1,5 +1,6 @@
+"use client";
 import React from "react";
-import { Button } from "flowbite-react";
+import { Button, Table } from "flowbite-react";
 const userData = {
   // Define the structure of your user data
   id: "1",
@@ -14,30 +15,18 @@ const subCategoryList = () => {
         <div>
           <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
             <div className="inline-block min-w-full shadow-md rounded-lg overflow-hidden">
-              <table className="min-w-full leading-normal">
-                <thead>
-                  <tr>
-                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                      ID
-                    </th>
-                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                      Category Name
-                    </th>
-                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                      Sub Category Name
-                    </th>
-                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                      Add If Needed
-                    </th>
-                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                      Action
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
+              <Table>
+                <Table.Head>
+                  <Table.HeadCell>ID</Table.HeadCell>
+                  <Table.HeadCell>Category Name</Table.HeadCell>
+                  <Table.HeadCell>Sub Category Name</Table.HeadCell>
+                  <Table.HeadCell>Add If Needed</Table.HeadCell>
+                  <Table.HeadCell>Action</Table.HeadCell>
+                </Table.Head>
+                <Table.Body className="divide-y">
                   {/* {userData.map((user) => ( */}
-                  <tr key={userData.id}>
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                  <Table.Row key={userData.id}>
+                    <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
                       <div className="flex">
                         <div className="ml-3">
                           <p className="text-gray-900 whitespace-no-wrap">
@@ -45,21 +34,21 @@ const subCategoryList = () => {
                           </p>
                         </div>
                       </div>
-                    </td>
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                    </Table.Cell>
+                    <Table.Cell>
                       <p className="text-gray-900 whitespace-no-wrap">
                         {userData.categoryName}
                       </p>
-                    </td>
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                    </Table.Cell>
+                    <Table.Cell>
                       <p className="text-gray-900 whitespace-no-wrap">
                         {userData.subCategoryName}
                       </p>
-                    </td>
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                    </Table.Cell>
+                    <Table.Cell>
                       <Button>Add Model</Button>
-                    </td>
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                    </Table.Cell>
+                    <Table.Cell>
                       <a
                         href="#"
                         className="text-blue-500 mr-2 hover:text-blue-700"
@@ -108,11 +97,11 @@ const subCategoryList = () => {
                         </svg>
                         Delete
                       </a>
-                    </td>
-                  </tr>
+                    </Table.Cell>
+                  </Table.Row>
                   {/* ))} */}
-                </tbody>
-              </table>
+                </Table.Body>
+              </Table>
             </div>
           </div>
         </div>
