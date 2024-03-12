@@ -1,43 +1,43 @@
-import React from "react";
-import { Button } from "flowbite-react";
+"use client";
+import React, { useState } from "react"; // Import React and useState
+import { Button, Pagination } from "flowbite-react";
+import { Table } from "flowbite-react";
+
 const userData = {
-  // Define the structure of your user data
   id: "1",
   categoryName: "New Phones",
   subCategoryName: "Apple",
 };
 
-const subCategoryList = () => {
+const SubCategoryList = () => {
+  const [currentPage, setCurrentPage] = useState(1); // Define state for current page
+
+  const onPageChange = (page) => setCurrentPage(page); // Function to handle page change
   return (
     <div className="">
       <div className="container">
         <div>
           <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
             <div className="inline-block min-w-full shadow-md rounded-lg overflow-hidden">
-              <table className="min-w-full leading-normal">
-                <thead>
-                  <tr>
-                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                      ID
-                    </th>
-                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                      Category Name
-                    </th>
-                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                      Sub Category Name
-                    </th>
-                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                      Add If Needed
-                    </th>
-                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                      Action
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {/* {userData.map((user) => ( */}
-                  <tr key={userData.id}>
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+              <Table className="min-w-full leading-normal">
+                {/* className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider" */}
+                <Table.Head>
+                  <Table.HeadCell>ID</Table.HeadCell>
+                  <Table.HeadCell>Category Name</Table.HeadCell>
+                  <Table.HeadCell className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                    Sub Category Name
+                  </Table.HeadCell>
+                  <Table.HeadCell className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                    Add If Needed
+                  </Table.HeadCell>
+                  <Table.HeadCell className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                    Action
+                  </Table.HeadCell>
+                </Table.Head>
+                <Table.Body>
+                  {/* className="px-5 py-5 border-b border-gray-200 bg-white text-sm" */}
+                  <Table.Row key={userData.id}>
+                    <Table.Cell>
                       <div className="flex">
                         <div className="ml-3">
                           <p className="text-gray-900 whitespace-no-wrap">
@@ -45,21 +45,38 @@ const subCategoryList = () => {
                           </p>
                         </div>
                       </div>
-                    </td>
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                    </Table.Cell>
+                    <Table.Cell>
                       <p className="text-gray-900 whitespace-no-wrap">
                         {userData.categoryName}
                       </p>
-                    </td>
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                    </Table.Cell>
+                    <Table.Cell>
                       <p className="text-gray-900 whitespace-no-wrap">
                         {userData.subCategoryName}
                       </p>
-                    </td>
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                    </Table.Cell>
+                    <Table.Cell>
                       <Button>Add Model</Button>
-                    </td>
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                    </Table.Cell>
+                    {/* <Table.Cell>
+                      <a
+                        href="#"
+                        className="text-blue-500 mr-2 hover:text-blue-700"
+                      >
+                        View
+                      </a>
+                      <a
+                        href="#"
+                        className="text-green-500 mr-2 hover:text-green-700"
+                      >
+                        Edit
+                      </a>
+                      <a href="#" className="text-red-500 hover:text-red-700">
+                        Delete
+                      </a>
+                    </Table.Cell> */}
+                    <Table.Cell>
                       <a
                         href="#"
                         className="text-blue-500 mr-2 hover:text-blue-700"
@@ -108,17 +125,24 @@ const subCategoryList = () => {
                         </svg>
                         Delete
                       </a>
-                    </td>
-                  </tr>
-                  {/* ))} */}
-                </tbody>
-              </table>
+                    </Table.Cell>
+                  </Table.Row>
+                </Table.Body>
+              </Table>
             </div>
           </div>
+        </div>
+        <div className="flex overflow-x-auto">
+          <Pagination
+            currentPage={currentPage}
+            totalPages={100}
+            onPageChange={onPageChange}
+            showIcons
+          />
         </div>
       </div>
     </div>
   );
 };
 
-export default subCategoryList;
+export default SubCategoryList;

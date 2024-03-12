@@ -1,8 +1,6 @@
 "use client";
-import React from "react";
-import Image from "next/image";
-import { useEffect, useState } from "react";
-import { HiOutlineEye } from "react-icons/hi";
+import React, { useState } from "react"; // Import React and useState
+import { Table, Pagination } from "flowbite-react";
 
 const userData = {
   // Define the structure of your user data
@@ -11,6 +9,10 @@ const userData = {
 };
 
 const ImageDetailsList = () => {
+  const [currentPage, setCurrentPage] = useState(1); // Define state for current page
+
+  const onPageChange = (page) => setCurrentPage(page); // Function to handle page change
+
   //   debugger;
   //   const [userData, setUserData] = useState([]);
 
@@ -41,24 +43,16 @@ const ImageDetailsList = () => {
         <div>
           <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
             <div className="inline-block min-w-full shadow-md rounded-lg overflow-hidden">
-              <table className="min-w-full leading-normal">
-                <thead>
-                  <tr>
-                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                      SN
-                    </th>
-                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                      Image
-                    </th>
-                    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                      Action
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
+              <Table>
+                <Table.Head>
+                  <Table.HeadCell>SN</Table.HeadCell>
+                  <Table.HeadCell>Image</Table.HeadCell>
+                  <Table.HeadCell>Action</Table.HeadCell>
+                </Table.Head>
+                <Table.Body>
                   {/* {userData.map((user) => ( */}
-                  <tr key={userData.id}>
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                  <Table.Row key={userData.id}>
+                    <Table.Cell>
                       <div className="flex">
                         <div className="ml-3">
                           <p className="text-gray-900 whitespace-no-wrap">
@@ -66,13 +60,13 @@ const ImageDetailsList = () => {
                           </p>
                         </div>
                       </div>
-                    </td>
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                    </Table.Cell>
+                    <Table.Cell>
                       <p className="text-gray-900 whitespace-no-wrap">
                         {userData.imageName}
                       </p>
-                    </td>
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                    </Table.Cell>
+                    <Table.Cell>
                       <a
                         href="#"
                         className="text-blue-500 mr-2 hover:text-blue-700"
@@ -121,7 +115,7 @@ const ImageDetailsList = () => {
                         </svg>
                         Delete
                       </a>
-                    </td>
+                    </Table.Cell>
                     {/* <td className="border-b border-gray-200 bg-white text-sm">
                       <p className="text-gray-900 whitespace-no-wrap">
                         <HiOutlineEye />
@@ -132,12 +126,20 @@ const ImageDetailsList = () => {
                         <HiOutlineEye />
                       </p>
                     </td> */}
-                  </tr>
+                  </Table.Row>
                   {/* ))} */}
-                </tbody>
-              </table>
+                </Table.Body>
+              </Table>
             </div>
           </div>
+        </div>
+        <div className="flex overflow-x-auto">
+          <Pagination
+            currentPage={currentPage}
+            totalPages={100}
+            onPageChange={onPageChange}
+            showIcons
+          />
         </div>
       </div>
     </div>
