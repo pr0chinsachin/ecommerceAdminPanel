@@ -4,22 +4,16 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Table, Pagination } from "flowbite-react";
 
-// const UserData = {
-//   // Define the structure of your user data
-//   id: "",
-//   username: "",
-//   email: "",
-//   image:"https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
-// }
-
 const UserDetailsPage = () => {
   debugger;
   const [userData, setUserData] = useState([]);
+  // Pagination
   const [currentPage, setCurrentPage] = useState(1); // Define state for current page
   const onPageChange = (page) => setCurrentPage(page); // Function to handle page change
+  const [itemsPerPage] = useState(5); // Set the number of items per page
+  //Sorting
   const [sortBy, setSortBy] = useState(null);
   const [sortOrder, setSortOrder] = useState("asc");
-  const [itemsPerPage] = useState(5); // Set the number of items per page
 
   // Function to handle sorting
   const handleSort = (key) => {

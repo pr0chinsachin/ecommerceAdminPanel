@@ -2,12 +2,6 @@
 import React, { useState } from "react"; // Import React and useState
 import { Table, Pagination } from "flowbite-react";
 
-// const userData = {
-//   // Define the structure of your user data
-//   id: "1",
-//   imageName: "ABC",
-// };
-
 const ImageDetailsList = () => {
   // Sample data
   const [userData, setUserData] = useState([
@@ -25,11 +19,14 @@ const ImageDetailsList = () => {
     { id: 12, imageName: "Bob.png" },
   ]);
 
+  // Pagination
   const [currentPage, setCurrentPage] = useState(1); // Define state for current page
   const onPageChange = (page) => setCurrentPage(page); // Function to handle page change
+  const [itemsPerPage] = useState(5); // Set the number of items per page
+
+  //Sorting
   const [sortBy, setSortBy] = useState(null);
   const [sortOrder, setSortOrder] = useState("asc");
-  const [itemsPerPage] = useState(5); // Set the number of items per page
 
   // Function to handle sorting
   const handleSort = (key) => {

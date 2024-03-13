@@ -2,11 +2,6 @@
 import React, { useState } from "react"; // Import React and useState
 import { Button, Pagination, Table } from "flowbite-react";
 
-// const userData = {
-//   id: "1",
-//   categoryName: "New Phones",
-// };
-
 const CategoryList = () => {
   // Sample data
   const [userData, setUserData] = useState([
@@ -20,11 +15,14 @@ const CategoryList = () => {
     { id: 8, categoryName: "Accessories" },
   ]);
 
+  // Pagination
   const [currentPage, setCurrentPage] = useState(1); // Define state for current page
   const onPageChange = (page) => setCurrentPage(page); // Function to handle page change
+  const [itemsPerPage] = useState(5); // Set the number of items per page
+
+  //Sorting
   const [sortBy, setSortBy] = useState(null);
   const [sortOrder, setSortOrder] = useState("asc");
-  const [itemsPerPage] = useState(5); // Set the number of items per page
 
   // Function to handle sorting
   const handleSort = (key) => {
