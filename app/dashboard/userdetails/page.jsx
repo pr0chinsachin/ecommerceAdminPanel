@@ -16,8 +16,41 @@ const UserDetailsPage = () => {
   debugger;
   const [userData, setUserData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1); // Define state for current page
-
   const onPageChange = (page) => setCurrentPage(page); // Function to handle page change
+  const [sortBy, setSortBy] = useState(null);
+  const [sortOrder, setSortOrder] = useState("asc");
+  const [itemsPerPage] = useState(5); // Set the number of items per page
+
+  // Function to handle sorting
+  const handleSort = (key) => {
+    if (sortBy === key) {
+      setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+    } else {
+      setSortBy(key);
+      setSortOrder("asc");
+    }
+  };
+
+  // Function to sort data
+  const sortedData = userData.sort((a, b) => {
+    if (sortBy) {
+      const compareValue = a[sortBy] > b[sortBy] ? 1 : -1;
+      return sortOrder === "asc" ? compareValue : compareValue * -1;
+    }
+    return 0;
+  });
+
+  const getSortIcon = (key) => {
+    if (sortBy === key) {
+      return sortOrder === "asc" ? <span>&uarr;</span> : <span>&darr;</span>;
+    }
+    return null;
+  };
+
+  // Calculate index range for pagination
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = sortedData.slice(indexOfFirstItem, indexOfLastItem);
 
   useEffect(() => {
     // Fetch data when the component mounts
@@ -48,19 +81,23 @@ const UserDetailsPage = () => {
             <div className="inline-block min-w-full shadow-md rounded-lg overflow-hidden">
               <Table>
                 <Table.Head>
-                  <Table.HeadCell className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                    ID
+                  <Table.HeadCell onClick={() => handleSort("id")}>
+                    {getSortIcon("id")}
+                    <span>&uarr;</span> ID
                   </Table.HeadCell>
-                  <Table.HeadCell className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                    Full Name
+                  <Table.HeadCell onClick={() => handleSort("username")}>
+                    {getSortIcon("username")}
+                    <span>&uarr;</span> Full Name
                   </Table.HeadCell>
-                  <Table.HeadCell className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                    Email
+                  <Table.HeadCell onClick={() => handleSort("email")}>
+                    {getSortIcon("email")}
+                    <span>&uarr;</span> Email
                   </Table.HeadCell>
-                  <Table.HeadCell className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                    Status
+                  <Table.HeadCell onClick={() => handleSort("status")}>
+                    {getSortIcon("status")}
+                    <span>&uarr;</span> Status
                   </Table.HeadCell>
-                  <Table.HeadCell className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100"></Table.HeadCell>
+                  <Table.HeadCell></Table.HeadCell>
                 </Table.Head>
                 <Table.Body>
                   {userData.map((user) => (
