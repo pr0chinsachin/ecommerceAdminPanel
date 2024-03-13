@@ -13,7 +13,7 @@ const CarouselImage = () => {
           <div>
             <Label
               htmlFor="file-upload-helper-text"
-              className="text-white mt-2"
+              className="text-cyan-600 mt-2"
               value="Upload file"
             />
           </div>

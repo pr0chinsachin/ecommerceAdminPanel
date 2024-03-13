@@ -46,7 +46,7 @@ const menuItems = [
       },
       {
         title: "Order Details",
-        path: "/dashboard/order",
+        path: "/dashboard/orderlist",
         icon: <MdPeople />,
       },
       {
