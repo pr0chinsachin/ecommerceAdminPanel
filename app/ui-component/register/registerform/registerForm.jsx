@@ -43,13 +43,17 @@ const RegisterForm = () => {
   const handleSubmit = async (event) => {
     debugger;
     event.preventDefault();
+    const formDataFinal = new FormData(); // Create a new FormData object
+
+    // Append each form field to the FormData object
+    Object.entries(formData).forEach(([key, value]) => {
+      formDataFinal.append(key, value);
+    });
+
     try {
       const response = await fetch("http://192.168.254.249:5077/api/Account", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
+        body: formDataFinal,
       });
       if (response.ok) {
         console.log("Form data submitted successfully");
