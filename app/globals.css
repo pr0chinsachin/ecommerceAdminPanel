@@ -1,10 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* #182237 */
+/* --bgSoft is for side an nav menu */
+/*--bg is for dashboard background */
 
 :root {
     --bg: #151c2c;
-    --bgSoft: #182237;
+    --bgSoft: #334155;
     --text: #000;
     --textSoft: #b7bac1;
   }
