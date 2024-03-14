@@ -1,5 +1,5 @@
 .container {
-    background-color: #727e06;
+    background-color: #059669;
     padding: 20px;
     border-radius: 10px;
     display: flex;
@@ -9,7 +9,7 @@
     color: #fff;
   }
   .container2 {
-    background-color: #2fe7e7;
+    background-color: #fbbf24;
     padding: 20px;
     border-radius: 10px;
     display: flex;
@@ -19,7 +19,7 @@
     color: #fff;
   }
   .container3 {
-    background-color: #303096;
+    background-color: #06b6d4;
     padding: 20px;
     border-radius: 10px;
     display: flex;
@@ -29,7 +29,7 @@
     color: #fff;
   }
   .container4 {
-    background-color: #02530d;
+    background-color: #a16207;
     padding: 20px;
     border-radius: 10px;
     display: flex;
