@@ -49,21 +49,26 @@ const RegisterForm = () => {
     Object.entries(formData).forEach(([key, value]) => {
       formDataFinal.append(key, value);
     });
-
+    console.log(".................", formDataFinal)
     try {
-      const response = await fetch("http://192.168.254.249:5077/api/Account", {
+      const response = await fetch("http://192.168.1.73:5077/api/Account", {
         method: "POST",
         body: formDataFinal,
       });
+      console.log(response);
       if (response.ok) {
         console.log("Form data submitted successfully");
         alert("Form data submitted successfully");
         router.push("/login");
+      }
+      else {
         const errorMessage = await response.text();
         console.error(`Failed to submit form data: ${errorMessage}`);
         alert(`Failed to submit form data: ${errorMessage}`);
       }
-    } catch (error) {
+
+    }
+    catch (error) {
       console.error("Error:", error);
     }
   };
@@ -135,7 +140,7 @@ const RegisterForm = () => {
                     />
                   </div>
                 </div>
-                <div className="sm:col-span-2 sm:col-start-1">
+                <div className="sm:col-span-3">
                   <Label htmlFor="address" value="Address" />
                   <div className="mt-2">
                     <TextInput
@@ -148,7 +153,7 @@ const RegisterForm = () => {
                     />
                   </div>
                 </div>
-                <div className="sm:col-span-2">
+                <div className="sm:col-span-3">
                   <Label htmlFor="email" value="Email address" />
                   <div className="mt-2">
                     <TextInput
@@ -162,8 +167,21 @@ const RegisterForm = () => {
                     />
                   </div>
                 </div>
+                <div className="sm:col-span-3">
+                  <Label htmlFor="UserName" value="User Name" />
+                  <div className="mt-2">
+                    <TextInput
+                      id="UserName"
+                      name="UserName"
+                      type="text"
+                      autoComplete="UserName"
+                      value={formData.UserName}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                </div>
 
-                <div className="sm:col-span-2">
+                <div className="sm:col-span-3">
                   <Label htmlFor="phone" value=" Phone Number" />
                   <div className="mt-2">
                     <TextInput

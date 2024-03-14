@@ -33,7 +33,7 @@ const UserDetailsPage = () => {
     }
     return 0;
   });
-
+console.log(sortedData)
   const getSortIcon = (key) => {
     if (sortBy === key) {
       return sortOrder === "asc" ? <span>&uarr;</span> : <span>&darr;</span>;
@@ -54,7 +54,7 @@ const UserDetailsPage = () => {
   const fetchData = async () => {
     //debugger
     try {
-      const response = await fetch("http://192.168.254.249:5077/api/User");
+      const response = await fetch("http://192.168.1.73:5077/api/User");
       if (response.ok) {
         const data = await response.json();
         console.log(data);
@@ -94,7 +94,7 @@ const UserDetailsPage = () => {
                   <Table.HeadCell></Table.HeadCell>
                 </Table.Head>
                 <Table.Body>
-                  {userData.map((user) => (
+                  {currentItems.map((user) => (
                     <Table.Row key={user.id}>
                       <Table.Cell className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                         <div className="flex">
