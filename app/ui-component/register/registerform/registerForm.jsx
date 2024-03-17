@@ -43,22 +43,31 @@ const RegisterForm = () => {
   const handleSubmit = async (event) => {
     debugger;
     event.preventDefault();
-    const formDataFinal = new FormData(); // Create a new FormData object
+    const formDataToSend = new FormData(); // Create a new FormData object
 
+    console.log("data --->", formData);
     // Append each form field to the FormData object
+    // Object.entries(formData).forEach(([key, value]) => {
+    //   formDataFinal.append(key, value);
+    //   console.log(".....value............",formDataFinal.append(key, value));
+    // });
     Object.entries(formData).forEach(([key, value]) => {
-      formDataFinal.append(key, value);
+      formDataToSend.append(key, value);
+      console.log(".....value............", formDataToSend.append(key, value));
     });
-    console.log(".................", formDataFinal)
+
+    console.log(".................", formDataToSend)
     try {
-      const response = await fetch("http://192.168.1.73:5077/api/Account", {
+      const response = await fetch("http://192.168.1.65:5077/api/Account", {
         method: "POST",
-        body: formDataFinal,
+        body: formDataToSend,
       });
       console.log(response);
       if (response.ok) {
         console.log("Form data submitted successfully");
         alert("Form data submitted successfully");
+        const message = await response.text();
+        alert(`Your response: ${message}`);
         router.push("/login");
       }
       else {

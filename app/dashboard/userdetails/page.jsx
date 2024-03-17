@@ -54,7 +54,7 @@ console.log(sortedData)
   const fetchData = async () => {
     //debugger
     try {
-      const response = await fetch("http://192.168.1.73:5077/api/User");
+      const response = await fetch("http://192.168.1.65:5077/api/User");
       if (response.ok) {
         const data = await response.json();
         console.log(data);
@@ -66,7 +66,7 @@ console.log(sortedData)
       console.error("Error:", error);
     }
   };
-
+console.log(currentItems)
   return (
     <div className="">
       <div className="container">
@@ -157,10 +157,10 @@ console.log(sortedData)
             </div>
           </div>
         </div>
-        <div className="flex overflow-x-auto">
+        <div className="flex overflow-x-auto flex justify-end mt-4">
           <Pagination
             currentPage={currentPage}
-            totalPages={100}
+            totalPages={Math.ceil(sortedData.length / itemsPerPage)}
             onPageChange={onPageChange}
             showIcons
           />

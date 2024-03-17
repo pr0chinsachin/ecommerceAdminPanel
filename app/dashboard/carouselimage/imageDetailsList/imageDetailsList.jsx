@@ -184,7 +184,7 @@ const ImageDetailsList = () => {
             </div>
           </div>
         </div>
-        <div className="flex overflow-x-auto">
+        <div className="flex overflow-x-auto flex justify-end mt-4">
           <Pagination
             currentPage={currentPage}
             totalPages={Math.ceil(sortedData.length / itemsPerPage)}

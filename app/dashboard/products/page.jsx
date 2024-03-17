@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { useState, useRef } from "react";
-//import JoditEditor from "jodit-react";
+import JoditEditor from "jodit-react";
 import {
   FileInput,
   Label,
