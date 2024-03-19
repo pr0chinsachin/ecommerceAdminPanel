@@ -1,8 +1,10 @@
 "use client";
-import Image from 'next/image';
+import Image from "next/image";
 import logo from "../../../../public/noavatar.png";
 import { Label, Button, TextInput } from "flowbite-react";
 import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const LoginForm = () => {
   const [formData, setFormData] = useState({
@@ -16,6 +18,7 @@ const LoginForm = () => {
   };
 
   const handleSubmit = async (event) => {
+    debugger;
     event.preventDefault();
     try {
       const response = await fetch("http://192.168.1.65:5077/api/Login/login", {
@@ -29,14 +32,22 @@ const LoginForm = () => {
       if (response.ok) {
         alert("Logged In successfully");
         const message = await response.text();
-        alert(`Your response: ${message}`);
+        console.log(`Your response: ${message}`);
+        toast.success("Successfully Logged In!", {
+          position: "top-left",
+        });
       } else {
         const errorMessage = await response.text();
         console.error(`Failed to submit form data: ${errorMessage}`);
-        alert(`Failed to submit form data: ${errorMessage}`);
+        toast.warning("Validation Error!", {
+          position: "top-left",
+        });
       }
     } catch (error) {
       console.error("Error:", error);
+      toast.error("Server Error!", {
+        position: "top-right",
+      });
     }
   };
 
@@ -60,7 +71,10 @@ const LoginForm = () => {
           <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
             <form className="space-y-6" onSubmit={handleSubmit}>
               <div>
-                <Label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+                <Label
+                  htmlFor="email"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
                   Email address
                 </Label>
                 <div className="mt-2">
@@ -78,11 +92,17 @@ const LoginForm = () => {
 
               <div>
                 <div className="flex items-center justify-between">
-                  <Label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
+                  <Label
+                    htmlFor="password"
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                  >
                     Password
                   </Label>
                   <div className="text-sm">
-                    <a href="#" className="font-semibold text-cyan-600 hover:text-cyan-950">
+                    <a
+                      href="#"
+                      className="font-semibold text-cyan-600 hover:text-cyan-950"
+                    >
                       Forgot password?
                     </a>
                   </div>
@@ -101,24 +121,23 @@ const LoginForm = () => {
               </div>
 
               <div>
-                <Button
-                  type="submit"
-                  className="flex w-full justify-center rounded-md bg-cyan-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                >
-                  Sign in
-                </Button>
+                <Button type="submit">Sign in</Button>
               </div>
             </form>
 
             <p className="mt-10 text-center text-sm text-gray-500">
-              Not a member?{' '}
-              <a href="/register" className="font-semibold leading-6 text-rose-600 hover:text-indigo-500">
+              Not a member?{" "}
+              <a
+                href="/register"
+                className="font-semibold leading-6 text-rose-600 hover:text-indigo-500"
+              >
                 Register Now
               </a>
             </p>
           </div>
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 };
