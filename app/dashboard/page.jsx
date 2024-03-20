@@ -2,7 +2,6 @@
 import Card from "../ui-component/dashboard/card/card";
 //import Chart from "../ui-component/dashboard/chart/chart";
 import styles from "../ui-component/dashboard/dashboard.module.css";
-import Rightbar from "../ui-component/dashboard/rightbar/rightbar";
 import UserDetailsPage from "./userdetails/page";
 //import Transactions from "../ui-component/dashboard/transactions/transactions";
 
@@ -19,7 +18,7 @@ const Dashboard = () => {
           <Card/>
           <Card/> */}
         </div>
-        <UserDetailsPage/>
+        <UserDetailsPage />
         {/* <Transactions />
         <Chart /> */}
       </div>
