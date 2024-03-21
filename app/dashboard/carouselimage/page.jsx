@@ -3,11 +3,22 @@ import React, { useState } from "react";
 import { FileInput, Label, Button } from "flowbite-react";
 import Image from "next/image";
 import ImageDetailsList from "./imageDetailsList/imageDetailsList";
+import "react-toastify/dist/ReactToastify.css";
+
+const ProgressBar = ({ progress }) => (
+  <div className="h-2 relative max-w-2xl rounded overflow-hidden">
+    <div
+      className="h-full bg-cyan-600 transition-all"
+      style={{ width: `${progress}%` }}
+    ></div>
+  </div>
+);
 
 const CarouselImage = () => {
   const [images, setImages] = useState([]);
   const [dragging, setDragging] = useState(false);
   const [loading, setLoading] = useState(false); // Add loading state
+  const [uploadProgress, setUploadProgress] = useState(0);
 
   const handleDrop = (e) => {
     e.preventDefault();
@@ -43,6 +54,7 @@ const CarouselImage = () => {
   };
 
   const handleSubmit = async (e) => {
+    debugger;
     e.preventDefault();
     try {
       const formData = new FormData();
@@ -52,14 +64,24 @@ const CarouselImage = () => {
 
       setLoading(true); // Set loading to true while submitting
 
-      const response = await fetch("YOUR_API_ENDPOINT", {
+      const response = await fetch("http://192.168.1.65:5077/api/Login/login", {
         method: "POST",
         body: formData,
+        onUploadProgress: (progressEvent) => {
+          const progress = Math.round(
+            (progressEvent.loaded / progressEvent.total) * 100
+          );
+          setUploadProgress(progress);
+        },
       });
 
       if (response.ok) {
         console.log("Images uploaded successfully!");
         setImages([]);
+        toast.success("Successfull!", {
+          position: "top-left",
+        });
+        setUploadProgress(0);
       } else {
         console.error("Error uploading images:", response.statusText);
       }
@@ -93,8 +115,15 @@ const CarouselImage = () => {
             onDragOver={handleDragOver}
             onDragLeave={handleDragLeave}
           >
-            {loading ? ( // Conditional rendering of loader
-              <div className="text-gray-500">Loading...</div>
+            {loading ? (
+              <div>
+                <ProgressBar
+                  now={uploadProgress}
+                  label={`${uploadProgress}%`}
+                />{" "}
+                {/* Show progress bar */}
+                <p className="mt-2">Uploading...</p>
+              </div>
             ) : (
               <>
                 <Label
@@ -137,19 +166,28 @@ const CarouselImage = () => {
         </form>
       </div>
       <div className="mt-10 mb-10">
-        <div className="grid grid-cols-4 gap-4 mt-4">
-          {images.map((image, index) => (
-            <div key={index} className="w-full">
-              <Image
-                src={image}
-                alt={`image-${index}`}
-                width={200}
-                height={200}
-              />
-            </div>
-          ))}
-        </div>
+        {loading ? (
+          <div>
+            <ProgressBar now={uploadProgress} label={`${uploadProgress}%`} />{" "}
+            {/* Show progress bar */}
+            <p className="mt-2">Uploading...</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-4 gap-4 mt-4">
+            {images.map((image, index) => (
+              <div key={index} className="w-full">
+                <Image
+                  src={image}
+                  alt={`image-${index}`}
+                  width={200}
+                  height={200}
+                />
+              </div>
+            ))}
+          </div>
+        )}
       </div>
+
       <div className="mt-10 mb-10">
         <ImageDetailsList />
       </div>
