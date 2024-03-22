@@ -2,6 +2,9 @@
 import { Button, Label, Modal, TextInput, Select } from "flowbite-react";
 import { useState } from "react";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const SubCategoryModal = () => {
   const [openModal, setOpenModal] = useState(false);
   const [formData, setFormData] = useState({
@@ -36,6 +39,9 @@ const SubCategoryModal = () => {
       });
 
       if (!response.ok) {
+        toast.error("Server Error!", {
+          position: "top-right",
+        });
         throw new Error("Network response was not ok");
       }
 
@@ -43,7 +49,13 @@ const SubCategoryModal = () => {
       console.log(responseData);
 
       onCloseModal();
+      toast.success("Successfully Added!", {
+        position: "bottom-right",
+      });
     } catch (error) {
+      toast.error("Error! Please contact your support team", {
+        position: "top-right",
+      });
       console.error("There was a problem with the fetch operation:", error);
     }
   }
