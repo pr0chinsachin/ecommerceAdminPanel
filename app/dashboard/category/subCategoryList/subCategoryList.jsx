@@ -71,11 +71,10 @@ const SubCategoryList = () => {
                   </Table.HeadCell>
                   <Table.HeadCell onClick={() => handleSort("categoryName")}>
                     {getSortIcon("categoryName")} <span>&uarr;</span>Category
-                    Name
                   </Table.HeadCell>
                   <Table.HeadCell onClick={() => handleSort("subCategoryName")}>
-                    {getSortIcon("subCategoryName")} <span>&uarr;</span>Category
-                    Name
+                    {getSortIcon("subCategoryName")} <span>&uarr;</span>Sub
+                    Category
                   </Table.HeadCell>
                   <Table.HeadCell>Add If Needed</Table.HeadCell>
                   <Table.HeadCell>Action</Table.HeadCell>

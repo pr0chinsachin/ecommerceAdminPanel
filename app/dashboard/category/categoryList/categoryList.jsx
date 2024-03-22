@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react"; // Import React and useState
 import { Button, Pagination, Table } from "flowbite-react";
+import SubCategoryModal from "../categoryList/subCategoryModal";
 
 const CategoryList = () => {
   // Sample data
@@ -69,7 +70,6 @@ const CategoryList = () => {
                   </Table.HeadCell>
                   <Table.HeadCell onClick={() => handleSort("categoryName")}>
                     {getSortIcon("categoryName")} <span>&uarr;</span>Category
-                    Name
                   </Table.HeadCell>
                   <Table.HeadCell>Add</Table.HeadCell>
                   <Table.HeadCell>Action</Table.HeadCell>
@@ -92,7 +92,7 @@ const CategoryList = () => {
                         </p>
                       </Table.Cell>
                       <Table.Cell>
-                        <Button>Add Sub-Category</Button>
+                        <SubCategoryModal />
                       </Table.Cell>
                       {/* <Table.Cell>
                       <a
