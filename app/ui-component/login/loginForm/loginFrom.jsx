@@ -6,12 +6,14 @@ import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useAuth } from "../../../AuthContext";
+import { useRouter } from "next/navigation";
 
 const LoginForm = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+  const router = useRouter();
   const storeTokenInLS = useAuth();
   // Handle input change for all form fields
   const handleInputChange = (event) => {
@@ -39,6 +41,7 @@ const LoginForm = () => {
         toast.success("Successfully Logged In!", {
           position: "top-left",
         });
+        router.push("/"); // Redirect to dashboard
       } else {
         const errorMessage = await response.text();
         console.error(`Failed to submit form data: ${errorMessage}`);

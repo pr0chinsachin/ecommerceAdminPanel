@@ -13,10 +13,11 @@ const ProtectedRoute = ({ children }) => {
     console.log(storeTokenInLS);
     if (!storeTokenInLS) {
       router.push("/login"); // Redirect to login page if not authenticated
-    }else{
-      //storeTokenInLS(response_data.token)
-      router.push("/"); // Redirect to dashboard
     }
+    // else{
+    //   //storeTokenInLS(response_data.token)
+    //   router.push("/"); // Redirect to dashboard
+    // }
   },);
 
   return <>{storeTokenInLS && children}</>; // Render children only if user is authenticated
