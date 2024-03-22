@@ -10,6 +10,7 @@ import {
   Textarea,
   Datepicker,
   Dropdown,
+  Select,
 } from "flowbite-react";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
@@ -108,13 +109,22 @@ const ProductPage = () => {
 
                 <div className="sm:col-span-2">
                   <Label htmlFor="category" value="Category" />
-                  <div className="mt-2">
-                    <Dropdown label="Choose Category">
-                      <Dropdown.Item>Category 1</Dropdown.Item>
-                      <Dropdown.Item>Category 2</Dropdown.Item>
-                      <Dropdown.Item>Category 3</Dropdown.Item>
-                      <Dropdown.Item>Category 4</Dropdown.Item>
-                    </Dropdown>
+                  <div className="mt-2 max-w-md">
+                    <div className="max-w-md">
+                      <Select
+                        id="category"
+                        required
+                        name="category" // Set name attribute for select
+                        value={formData.category} // Use formData.category for value
+                        onChange={handleInputChange}
+                      >
+                        <option value="">Select Category</option>
+                        <option value="United States">United States</option>
+                        <option value="Canada">Canada</option>
+                        <option value="France">France</option>
+                        <option value="Germany">Germany</option>
+                      </Select>
+                    </div>
                     {/* <TextInput
                       type="text"
                       name="category"
@@ -127,21 +137,20 @@ const ProductPage = () => {
                 </div>
                 <div className="sm:col-span-2">
                   <Label htmlFor="subCategory" value="Sub Category" />
-                  <div className="mt-2">
-                    {/* <TextInput
-                      type="text"
-                      name="subCategory"
-                      id="subCategory"
-                      autoComplete="subCategory"
-                      value={formData.subCategory}
+                  <div className="mt-2 max-w-md">
+                    <Select
+                      id="category"
+                      required
+                      name="category" // Set name attribute for select
+                      value={formData.subCategory} // Use formData.category for value
                       onChange={handleInputChange}
-                    /> */}
-                    <Dropdown label="Choose Sub Category">
-                      <Dropdown.Item>Sub Category 1</Dropdown.Item>
-                      <Dropdown.Item>Sub Category 2</Dropdown.Item>
-                      <Dropdown.Item>Sub Category 3</Dropdown.Item>
-                      <Dropdown.Item>Sub Category 4</Dropdown.Item>
-                    </Dropdown>{" "}
+                    >
+                      <option value="">Select Sub - Category</option>
+                      <option value="United States">United States</option>
+                      <option value="Canada">Canada</option>
+                      <option value="France">France</option>
+                      <option value="Germany">Germany</option>
+                    </Select>
                   </div>
                 </div>
                 <div className="sm:col-span-3">
