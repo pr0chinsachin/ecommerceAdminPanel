@@ -5,7 +5,7 @@ import { Label, Button, TextInput } from "flowbite-react";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useAuth } from "../../../AuthContext";
+// import { useAuth } from "../../../AuthContext";
 import { useRouter } from "next/navigation";
 
 const LoginForm = () => {
@@ -13,8 +13,8 @@ const LoginForm = () => {
     email: "",
     password: "",
   });
-  const router = useRouter();
-  const storeTokenInLS = useAuth();
+  //const router = useRouter();
+ // const storeTokenInLS = useAuth();
   // Handle input change for all form fields
   const handleInputChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
@@ -24,7 +24,7 @@ const LoginForm = () => {
     debugger;
     event.preventDefault();
     try {
-      const response = await fetch("http://192.168.1.65:5077/api/Login/login", {
+      const response = await fetch("http://192.168.1.67:5077/api/Login/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -36,12 +36,12 @@ const LoginForm = () => {
         alert("Logged In successfully");
         const message = await response.text();
         console.log(`Your response: ${message}`);
-        const response_data = await response.json();
-        storeTokenInLS.setItem(response_data.token);
+        // const response_data = await response.json();
+        // storeTokenInLS.setItem(response_data.token);
         toast.success("Successfully Logged In!", {
           position: "top-left",
         });
-        router.push("/"); // Redirect to dashboard
+        // router.push("/"); // Redirect to dashboard
       } else {
         const errorMessage = await response.text();
         console.error(`Failed to submit form data: ${errorMessage}`);

@@ -1,20 +1,11 @@
 "use client";
-import React, { useState } from "react"; // Import React and useState
+import React, { useState,useEffect } from "react"; // Import React and useState
 import { Button, Pagination, Table } from "flowbite-react";
 import SubCategoryModal from "../categoryList/subCategoryModal";
 
 const CategoryList = () => {
   // Sample data
-  const [userData, setUserData] = useState([
-    { id: 1, categoryName: "Rent" },
-    { id: 2, categoryName: "Propery Sale" },
-    { id: 3, categoryName: "Buy Property" },
-    { id: 4, categoryName: "Buildings" },
-    { id: 5, categoryName: "Repair" },
-    { id: 6, categoryName: "New Phones" },
-    { id: 7, categoryName: "Used Phones" },
-    { id: 8, categoryName: "Accessories" },
-  ]);
+  const [userData, setUserData] = useState([]);
 
   // Pagination
   const [currentPage, setCurrentPage] = useState(1); // Define state for current page
@@ -56,6 +47,29 @@ const CategoryList = () => {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = sortedData.slice(indexOfFirstItem, indexOfLastItem);
 
+  
+  useEffect(() => {
+    // Fetch data when the component mounts
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    //debugger
+    try {
+      const response = await fetch("http://192.168.1.67:5077/api/MenuCategory/CategoryList");
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        setUserData(data);
+      } else {
+        console.error("Failed to fetch data");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+console.log(currentItems)
+
   return (
     <div className="">
       <div className="container">
@@ -71,7 +85,7 @@ const CategoryList = () => {
                   <Table.HeadCell onClick={() => handleSort("categoryName")}>
                     {getSortIcon("categoryName")} <span>&uarr;</span>Category
                   </Table.HeadCell>
-                  <Table.HeadCell>Add</Table.HeadCell>
+                  {/* <Table.HeadCell>Add</Table.HeadCell> */}
                   <Table.HeadCell>Action</Table.HeadCell>
                 </Table.Head>
                 <Table.Body>
@@ -81,19 +95,19 @@ const CategoryList = () => {
                         <div className="flex">
                           <div className="ml-3">
                             <p className="text-gray-900 whitespace-no-wrap">
-                              {user.id}
+                              {user.categoryCode}
                             </p>
                           </div>
                         </div>
                       </Table.Cell>
                       <Table.Cell>
                         <p className="text-gray-900 whitespace-no-wrap">
-                          {user.categoryName}
+                          {user.categoryTitle}
                         </p>
                       </Table.Cell>
-                      <Table.Cell>
+                      {/* <Table.Cell>
                         <SubCategoryModal />
-                      </Table.Cell>
+                      </Table.Cell> */}
                       {/* <Table.Cell>
                       <a
                         href="#"

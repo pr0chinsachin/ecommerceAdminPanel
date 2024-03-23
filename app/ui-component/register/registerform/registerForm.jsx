@@ -3,6 +3,8 @@ import React from "react";
 import { useState } from "react";
 import { FileInput, Label, Button, TextInput } from "flowbite-react";
 import { useRouter } from "next/navigation";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const RegisterForm = () => {
   const [formData, setFormData] = useState({
@@ -58,26 +60,39 @@ const RegisterForm = () => {
 
     console.log(".................", formDataToSend)
     try {
-      const response = await fetch("http://192.168.1.65:5077/api/Account", {
+      const response = await fetch("http://192.168.1.67:5077/api/Account", {
         method: "POST",
         body: formDataToSend,
       });
       console.log(response);
       if (response.ok) {
         console.log("Form data submitted successfully");
-        alert("Form data submitted successfully");
+        //alert("Form data submitted successfully");
         const message = await response.text();
+        console.log(`Your response: ${message}`);
         alert(`Your response: ${message}`);
-        router.push("/login");
+        toast.success("Successfully Logged In!", {
+          position: "top-left",
+          autoClose: 30000, // Set duration for the toast notification (in milliseconds)
+        });
+        // setTimeout(() => {
+        //   router.push("/login"); // Navigate to the login page after 3 seconds
+        // }, 30000); // 3000 milliseconds = 3 seconds;
       }
       else {
         const errorMessage = await response.text();
         console.error(`Failed to submit form data: ${errorMessage}`);
+        toast.warning("Validation Error", {
+          position: "top-left",
+        });
         alert(`Failed to submit form data: ${errorMessage}`);
       }
 
     }
     catch (error) {
+      toast.error("Server Error", {
+        position: "top-left",
+      });
       console.error("Error:", error);
     }
   };
@@ -282,6 +297,7 @@ const RegisterForm = () => {
           </div>
         </form>
       </div>
+      <ToastContainer/>
     </div>
   );
 };

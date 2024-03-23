@@ -5,7 +5,7 @@ import Image from "next/image";
 import ImageDetailsList from "./imageDetailsList/imageDetailsList";
 
 const CarouselImage = () => {
-  const [images, setImages] = useState([]);
+  const [ImgFile, setImages] = useState([]);
   const [dragging, setDragging] = useState(false);
   const [loading, setLoading] = useState(false); // Add loading state
 
@@ -26,6 +26,7 @@ const CarouselImage = () => {
   };
 
   const handleImageChange = async (fileList) => {
+    debugger
     setLoading(true); // Set loading to true while handling image change
     const imageArray = [];
     await Promise.all(
@@ -37,27 +38,30 @@ const CarouselImage = () => {
         };
       })
     );
-    console.log(setImages(imageArray));
+    console.log(imageArray);
     setImages(imageArray);
     setLoading(false); // Set loading to false after handling image change
   };
 
   const handleSubmit = async (e) => {
+    debugger
     e.preventDefault();
     try {
       const formData = new FormData();
-      images.forEach((image, index) => {
+      ImgFile.forEach((image, index) => {
         formData.append(`image${index}`, image);
       });
 
       setLoading(true); // Set loading to true while submitting
 
-      const response = await fetch("YOUR_API_ENDPOINT", {
+      const response = await fetch("http://192.168.1.67:5077/api/Caruosel/UploadCaruoselImage", {
         method: "POST",
         body: formData,
       });
 
       if (response.ok) {
+        const message =await response.text();
+        alert(`Your response: ${message}`)
         console.log("Images uploaded successfully!");
         setImages([]);
       } else {
@@ -138,7 +142,7 @@ const CarouselImage = () => {
       </div>
       <div className="mt-10 mb-10">
         <div className="grid grid-cols-4 gap-4 mt-4">
-          {images.map((image, index) => (
+          {ImgFile.map((image, index) => (
             <div key={index} className="w-full">
               <Image
                 src={image}

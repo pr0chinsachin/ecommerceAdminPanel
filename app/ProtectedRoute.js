@@ -5,13 +5,13 @@ import { useAuth } from "./AuthContext"; // Change to lowercase
 
 
 const ProtectedRoute = ({ children }) => {
-  const { storeTokenInLS } = useAuth();
+  const { user } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
     debugger;
-    console.log(storeTokenInLS);
-    if (!storeTokenInLS) {
+    console.log(user);
+    if (!user) {
       router.push("/login"); // Redirect to login page if not authenticated
     }
     // else{
@@ -20,7 +20,7 @@ const ProtectedRoute = ({ children }) => {
     // }
   },);
 
-  return <>{storeTokenInLS && children}</>; // Render children only if user is authenticated
+  return <>{user && children}</>; // Render children only if user is authenticated
 };
 
 export default ProtectedRoute;
