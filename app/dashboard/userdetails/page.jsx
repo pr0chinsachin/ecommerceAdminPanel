@@ -54,7 +54,7 @@ console.log(sortedData)
   const fetchData = async () => {
     //debugger
     try {
-      const response = await fetch("http://192.168.1.65:5077/api/User");
+      const response = await fetch("http://192.168.1.67:5077/api/User");
       if (response.ok) {
         const data = await response.json();
         console.log(data);

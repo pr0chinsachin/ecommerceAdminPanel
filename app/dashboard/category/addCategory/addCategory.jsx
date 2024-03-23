@@ -1,28 +1,37 @@
 "use client";
-import { Button, Label, Modal, TextInput } from "flowbite-react";
-import { useState } from "react";
+import { Button, Modal, TextInput } from "flowbite-react";
+import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const AddCategory = () => {
   const [openModal, setOpenModal] = useState(false);
-  const [categoryName, setCategoryName] = useState("");
+  const [formData, setFormData] = useState({
+    categoryCode: "", // Initial category code
+    categoryName: "",
+    status: false,
+    deleted: false
+  });
 
-  function onCloseModal() {
+  const onCloseModal = () => {
     setOpenModal(false);
-    setCategoryName(""); // Fixed typo here from categoryName("") to setCategoryName("")
-  }
+  };
 
-  async function handleSubmit(event) {
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const response = await fetch("https://example.com/api/add-category", {
+      const response = await fetch("http://192.168.1.67:5077/api/MenuCategory/CreateMenuCategory", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ categoryName }), // Sending categoryName as JSON
+        body: JSON.stringify(formData),
       });
 
       if (!response.ok) {
@@ -41,13 +50,18 @@ const AddCategory = () => {
       toast.success("Successfully Added!", {
         position: "bottom-right",
       });
+      // Clear form data after successful submission
+      setFormData({
+        categoryCode: "",
+        categoryName: "",
+      });
     } catch (error) {
       console.error("There was a problem with the fetch operation:", error);
       toast.error("Error! Contact your support team", {
         position: "top-right",
       });
     }
-  }
+  };
 
   return (
     <>
@@ -67,15 +81,22 @@ const AddCategory = () => {
                   Add category with the new one.
                 </h3>
                 <form onSubmit={handleSubmit}>
-                  <div>
-                    {/* <div className="mb-2 block">
-                    <Label htmlFor="Category Name" value="Category Name" />
-                  </div> */}
+                  <div className="">
+                    <TextInput
+                      id="categoryCode"
+                      name="categoryCode"
+                      placeholder="Category Code"
+                      value={formData.categoryCode}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  <div className="pt-3">
                     <TextInput
                       id="categoryName"
+                      name="categoryName"
                       placeholder="Category Name"
-                      value={categoryName}
-                      onChange={(event) => setCategoryName(event.target.value)}
+                      value={formData.categoryName}
+                      onChange={handleInputChange}
                       required
                     />
                   </div>

@@ -1,6 +1,6 @@
 "use client";
 import { Button, Label, Modal, TextInput, Select } from "flowbite-react";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -11,6 +11,7 @@ const SubCategoryModal = () => {
     category: "", // Initialize category state
     subCategoryName: "", // Initialize subCategoryName state
   });
+  const [categoryList, setCategoryList] = useState([]);
 
   function onCloseModal() {
     setOpenModal(false);
@@ -20,7 +21,26 @@ const SubCategoryModal = () => {
       subCategoryName: "",
     });
   }
+  useEffect(() => {
+    // Fetch data when the component mounts
+    fetchData();
+  }, []);
 
+  const fetchData = async () => {
+    //debugger
+    try {
+      const response = await fetch("http://192.168.1.67:5077/api/MenuCategory/CategoryList");
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        setCategoryList(data); // Set category list state
+      } else {
+        console.error("Failed to fetch data");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
   // Handle input change for all form fields
   const handleInputChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
@@ -61,8 +81,8 @@ const SubCategoryModal = () => {
   }
 
   return (
-    <>
-      <div className="pt-4">
+    <div>
+      <div className="">
         <Button
           className="text-cyan-600 text-white shadow-sm"
           onClick={() => setOpenModal(true)}
@@ -78,7 +98,7 @@ const SubCategoryModal = () => {
               </h3>
               <form onSubmit={handleSubmit}>
                 <div className="max-w-md mt-3">
-                  <Select
+                <Select
                     id="category"
                     required
                     name="category" // Set name attribute for select
@@ -86,10 +106,11 @@ const SubCategoryModal = () => {
                     onChange={handleInputChange}
                   >
                     <option value="">Select Category</option>
-                    <option value="United States">United States</option>
-                    <option value="Canada">Canada</option>
-                    <option value="France">France</option>
-                    <option value="Germany">Germany</option>
+                    {categoryList.map((category) => (
+                      <option key={category.id} value={category.categoryTitle}>
+                        {category.categoryTitle}
+                      </option>
+                    ))}
                   </Select>
                 </div>
                 <div className="max-w-md mt-3">
@@ -110,7 +131,8 @@ const SubCategoryModal = () => {
           </Modal.Body>
         </Modal>
       </div>
-    </>
+      <ToastContainer/>
+    </div>
   );
 };
 
