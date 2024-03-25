@@ -1,7 +1,8 @@
 "use client";
-import React, { useState,useEffect } from "react"; // Import React and useState
+import React, { useState, useEffect } from "react"; // Import React and useState
 import { Button, Pagination, Table } from "flowbite-react";
 import SubCategoryModal from "../categoryList/subCategoryModal";
+import BASE_URL from "../../../urlConfig/urlConfig";
 
 const CategoryList = () => {
   // Sample data
@@ -47,7 +48,6 @@ const CategoryList = () => {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = sortedData.slice(indexOfFirstItem, indexOfLastItem);
 
-  
   useEffect(() => {
     // Fetch data when the component mounts
     fetchData();
@@ -56,7 +56,7 @@ const CategoryList = () => {
   const fetchData = async () => {
     //debugger
     try {
-      const response = await fetch("http://192.168.1.67:5077/api/MenuCategory/CategoryList");
+      const response = await fetch(`${BASE_URL}/MenuCategory/CategoryList`);
       if (response.ok) {
         const data = await response.json();
         console.log(data);
@@ -68,7 +68,7 @@ const CategoryList = () => {
       console.error("Error:", error);
     }
   };
-console.log(currentItems)
+  console.log(currentItems);
 
   return (
     <div className="">

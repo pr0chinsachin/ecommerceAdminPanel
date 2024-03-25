@@ -3,7 +3,7 @@ import React from "react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Table, Pagination } from "flowbite-react";
-import BASE_URL from "../../../urlConfig/urlConfig";
+import BASE_URL from "../../urlConfig/urlConfig";
 
 const UserDetailsPage = () => {
   debugger;
