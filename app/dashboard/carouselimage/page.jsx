@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { FileInput, Label, Button } from "flowbite-react";
 import Image from "next/image";
 import ImageDetailsList from "./imageDetailsList/imageDetailsList";
+import BASE_URL from "../../urlConfig/urlConfig";
 
 const CarouselImage = () => {
   const [ImgFile, setImages] = useState([]);
@@ -26,7 +27,7 @@ const CarouselImage = () => {
   };
 
   const handleImageChange = async (fileList) => {
-    debugger
+    debugger;
     setLoading(true); // Set loading to true while handling image change
     const imageArray = [];
     await Promise.all(
@@ -44,7 +45,7 @@ const CarouselImage = () => {
   };
 
   const handleSubmit = async (e) => {
-    debugger
+    debugger;
     e.preventDefault();
     try {
       const formData = new FormData();
@@ -54,14 +55,14 @@ const CarouselImage = () => {
 
       setLoading(true); // Set loading to true while submitting
 
-      const response = await fetch("http://192.168.1.67:5077/api/Caruosel/UploadCaruoselImage", {
+      const response = await fetch(`${BASE_URL}/Caruosel/UploadCaruoselImage`, {
         method: "POST",
         body: formData,
       });
 
       if (response.ok) {
-        const message =await response.text();
-        alert(`Your response: ${message}`)
+        const message = await response.text();
+        alert(`Your response: ${message}`);
         console.log("Images uploaded successfully!");
         setImages([]);
       } else {

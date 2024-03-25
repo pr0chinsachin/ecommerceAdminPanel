@@ -14,6 +14,7 @@ import {
 } from "flowbite-react";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
+import BASE_URL from "../../urlConfig/urlConfig";
 
 const ProductPage = () => {
   const JoditEditor = dynamic(() => import("jodit-react"), { ssr: false });
@@ -58,7 +59,7 @@ const ProductPage = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch("http://192.168.254.249:5077/api/Account", {
+      const response = await fetch(`${BASE_URL}/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

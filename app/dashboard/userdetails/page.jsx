@@ -3,6 +3,7 @@ import React from "react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Table, Pagination } from "flowbite-react";
+import BASE_URL from "../../urlConfig/urlConfig";
 
 const UserDetailsPage = () => {
   debugger;
@@ -33,7 +34,7 @@ const UserDetailsPage = () => {
     }
     return 0;
   });
-console.log(sortedData)
+  console.log(sortedData);
   const getSortIcon = (key) => {
     if (sortBy === key) {
       return sortOrder === "asc" ? <span>&uarr;</span> : <span>&darr;</span>;
@@ -54,7 +55,7 @@ console.log(sortedData)
   const fetchData = async () => {
     //debugger
     try {
-      const response = await fetch("http://192.168.1.67:5077/api/User");
+      const response = await fetch(`${BASE_URL}/User`);
       if (response.ok) {
         const data = await response.json();
         console.log(data);
@@ -66,7 +67,7 @@ console.log(sortedData)
       console.error("Error:", error);
     }
   };
-console.log(currentItems)
+  console.log(currentItems);
   return (
     <div className="">
       <div className="container">
