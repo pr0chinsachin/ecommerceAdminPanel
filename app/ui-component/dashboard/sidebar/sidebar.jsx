@@ -47,7 +47,7 @@ const menuItems = [
         submenu: [
           {
             title: "Product List",
-            path: "/dashboard/productlist",
+            path: "/dashboard/products/productList",
             icon: <MdWork />,
             // submenu: [
             //   // Nested submenu
