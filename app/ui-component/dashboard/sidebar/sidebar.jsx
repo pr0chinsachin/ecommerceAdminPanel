@@ -1,3 +1,4 @@
+import React from "react";
 import Image from "next/image";
 import MenuLink from "./menulink/menuLink";
 import styles from "./sidebar.module.css";
@@ -42,7 +43,27 @@ const menuItems = [
       {
         title: "Add Product",
         path: "/dashboard/products",
-        icon: <MdAnalytics />,
+        icon: <MdWork />,
+        submenu: [
+          {
+            title: "Product List",
+            path: "/dashboard/productlist",
+            icon: <MdWork />,
+            // submenu: [
+            //   // Nested submenu
+            //   {
+            //     title: "Submenu Item 1",
+            //     path: "/dashboard/submenu1",
+            //     icon: <MdDashboard />,
+            //   },
+            //   {
+            //     title: "Submenu Item 2",
+            //     path: "/dashboard/submenu2",
+            //     icon: <MdDashboard />,
+            //   },
+            // ],
+          },
+        ],
       },
       {
         title: "Order Details",
@@ -151,7 +172,27 @@ const Sidebar = async () => {
           <li key={cat.title}>
             <span className={styles.cat}>{cat.title}</span>
             {cat.list.map((item) => (
-              <MenuLink item={item} key={item.title} />
+              <React.Fragment key={item.title}>
+                <MenuLink item={item} />
+                {item.submenu && (
+                  <ul className={styles.submenu}>
+                    {item.submenu.map((subItem) => (
+                      <li key={subItem.title}>
+                        <MenuLink item={subItem} />
+                        {subItem.submenu && (
+                          <ul className={styles.submenu}>
+                            {subItem.submenu.map((nestedSubItem) => (
+                              <li key={nestedSubItem.title}>
+                                <MenuLink item={nestedSubItem} />
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </React.Fragment>
             ))}
           </li>
         ))}
