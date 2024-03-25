@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { FileInput, Label, Button } from "flowbite-react";
 import Image from "next/image";
 import ImageDetailsList from "./imageDetailsList/imageDetailsList";
-import BASE_URL from "../../../urlConfig/urlConfig";
+import BASE_URL from "../../urlConfig/urlConfig";
 
 const CarouselImage = () => {
   const [ImgFile, setImages] = useState([]);

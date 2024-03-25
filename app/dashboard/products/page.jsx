@@ -14,7 +14,7 @@ import {
 } from "flowbite-react";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
-import BASE_URL from "../../../urlConfig/urlConfig";
+import BASE_URL from "../../urlConfig/urlConfig";
 
 const ProductPage = () => {
   const JoditEditor = dynamic(() => import("jodit-react"), { ssr: false });
