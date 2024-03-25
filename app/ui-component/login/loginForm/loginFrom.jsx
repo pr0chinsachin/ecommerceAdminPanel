@@ -7,6 +7,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 // import { useAuth } from "../../../AuthContext";
 import { useRouter } from "next/navigation";
+import BASE_URL from "../../../urlConfig/urlConfig";
 
 const LoginForm = () => {
   const [formData, setFormData] = useState({
@@ -14,7 +15,7 @@ const LoginForm = () => {
     password: "",
   });
   //const router = useRouter();
- // const storeTokenInLS = useAuth();
+  // const storeTokenInLS = useAuth();
   // Handle input change for all form fields
   const handleInputChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
@@ -23,8 +24,9 @@ const LoginForm = () => {
   const handleSubmit = async (event) => {
     debugger;
     event.preventDefault();
+    console.log(`${BASE_URL}/Login/login`);
     try {
-      const response = await fetch("http://192.168.1.67:5077/api/Login/login", {
+      const response = await fetch(`${BASE_URL}/Login/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

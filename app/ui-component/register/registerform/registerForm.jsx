@@ -5,6 +5,7 @@ import { FileInput, Label, Button, TextInput } from "flowbite-react";
 import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import BASE_URL from "../../../urlConfig/urlConfig";
 
 const RegisterForm = () => {
   const [formData, setFormData] = useState({
@@ -58,9 +59,9 @@ const RegisterForm = () => {
       console.log(".....value............", formDataToSend.append(key, value));
     });
 
-    console.log(".................", formDataToSend)
+    console.log(".................", formDataToSend);
     try {
-      const response = await fetch("http://192.168.1.67:5077/api/Account", {
+      const response = await fetch(`${BASE_URL}/Account`, {
         method: "POST",
         body: formDataToSend,
       });
@@ -78,8 +79,7 @@ const RegisterForm = () => {
         // setTimeout(() => {
         //   router.push("/login"); // Navigate to the login page after 3 seconds
         // }, 30000); // 3000 milliseconds = 3 seconds;
-      }
-      else {
+      } else {
         const errorMessage = await response.text();
         console.error(`Failed to submit form data: ${errorMessage}`);
         toast.warning("Validation Error", {
@@ -87,9 +87,7 @@ const RegisterForm = () => {
         });
         alert(`Failed to submit form data: ${errorMessage}`);
       }
-
-    }
-    catch (error) {
+    } catch (error) {
       toast.error("Server Error", {
         position: "top-left",
       });
@@ -297,7 +295,7 @@ const RegisterForm = () => {
           </div>
         </form>
       </div>
-      <ToastContainer/>
+      <ToastContainer />
     </div>
   );
 };

@@ -3,6 +3,7 @@ import { Button, Modal, TextInput } from "flowbite-react";
 import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import BASE_URL from "../../../urlConfig/urlConfig";
 
 const AddCategory = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -10,7 +11,7 @@ const AddCategory = () => {
     categoryCode: "", // Initial category code
     categoryName: "",
     status: false,
-    deleted: false
+    deleted: false,
   });
 
   const onCloseModal = () => {
@@ -26,13 +27,16 @@ const AddCategory = () => {
     event.preventDefault();
 
     try {
-      const response = await fetch("http://192.168.1.67:5077/api/MenuCategory/CreateMenuCategory", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        `${BASE_URL}/MenuCategory/CreateMenuCategory`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
       if (!response.ok) {
         toast.error("Server Error!", {

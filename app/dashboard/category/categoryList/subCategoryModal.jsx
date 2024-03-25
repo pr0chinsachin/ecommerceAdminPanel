@@ -1,9 +1,10 @@
 "use client";
 import { Button, Label, Modal, TextInput, Select } from "flowbite-react";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import BASE_URL from "../../../urlConfig/urlConfig";
 
 const SubCategoryModal = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -29,7 +30,7 @@ const SubCategoryModal = () => {
   const fetchData = async () => {
     //debugger
     try {
-      const response = await fetch("http://192.168.1.67:5077/api/MenuCategory/CategoryList");
+      const response = await fetch(`${BASE_URL}/MenuCategory/CategoryList`);
       if (response.ok) {
         const data = await response.json();
         console.log(data);
@@ -50,7 +51,7 @@ const SubCategoryModal = () => {
     event.preventDefault();
 
     try {
-      const response = await fetch("https://example.com/api/add-subcategory", {
+      const response = await fetch(`${BASE_URL}/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -98,7 +99,7 @@ const SubCategoryModal = () => {
               </h3>
               <form onSubmit={handleSubmit}>
                 <div className="max-w-md mt-3">
-                <Select
+                  <Select
                     id="category"
                     required
                     name="category" // Set name attribute for select
@@ -131,7 +132,7 @@ const SubCategoryModal = () => {
           </Modal.Body>
         </Modal>
       </div>
-      <ToastContainer/>
+      <ToastContainer />
     </div>
   );
 };
