@@ -55,7 +55,9 @@ const UserDetailsPage = () => {
   const fetchData = async () => {
     //debugger
     try {
+      console.log(`${BASE_URL}/User`)
       const response = await fetch(`${BASE_URL}/User`);
+      console.log(`${BASE_URL}/User`)
       if (response.ok) {
         const data = await response.json();
         console.log(data);

@@ -87,7 +87,7 @@
 .submenu {
   display: none;
   /* position: absolute; */
-  background-color: #ffffff; /* Background color */
+  background-color: #182237; /* Background color */
   min-width: 200px; /* Adjust width as needed */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for a subtle effect */
   z-index: 1;
@@ -101,11 +101,12 @@
   color: #333;
   display: block;
   transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+  border-radius: 4px;
 }
 
 /* Hover effect for submenu items */
 .submenu li:hover {
-  background-color: #f1f1f1; /* Background color on hover */
+  background-color: #182237; /* Background color on hover */
 }
 
 /* Show submenu when hovering over parent item */
