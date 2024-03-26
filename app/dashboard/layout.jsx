@@ -7,20 +7,20 @@ import { AuthProvider } from "../AuthContext";
 import ProtectedRoute from "../ProtectedRoute";
 const Layout = ({ children }) => {
   return (
-    <AuthProvider>
-      <ProtectedRoute>
-        <div className={Styles.container}>
-          <div className={Styles.menu}>
-            <Sidebar />
-          </div>
-          <div className={Styles.content}>
-            <Navbar />
-            {children}
-            <Footer />
-          </div>
-        </div>
-      </ProtectedRoute>
-    </AuthProvider>
+    // <AuthProvider>
+    //   <ProtectedRoute>
+    <div className={Styles.container}>
+      <div className={Styles.menu}>
+        <Sidebar />
+      </div>
+      <div className={Styles.content}>
+        <Navbar />
+        {children}
+        <Footer />
+      </div>
+    </div>
+    //   </ProtectedRoute>
+    // </AuthProvider>
   );
 };
 
