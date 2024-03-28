@@ -1,77 +1,101 @@
 "use client";
 import React, { useState } from "react";
-import { Button, Pagination, Table, Badge } from "flowbite-react";
+import { Button, Pagination, Table, Badge, Modal } from "flowbite-react";
 
 const AgentLists = () => {
   const [userData, setUserData] = useState([
     {
       id: 1,
-      productName: "Xiome A3",
-      category: "Mobile",
-      subCategory: "MIUI",
-      price: "sac@gmail.com",
-      address: "Andrich Road 32 prpoerty",
-      date: "2023-06-11",
-      status: "active",
+      agentName: "Sachin Maharjan",
+      designation: "Senior BA",
+      experience: "7 years",
+      skill: "Soft and Professional Skills",
+      email: "sac@gmail.com",
+      contactNumber: "987986787787",
+      information:
+        "Hi My name is Sachin Maharjan and I have experience as a Business Analyst and Front end Developer",
+      isActive: "active",
+      uploadImage: "http://abc.mycompany.com/images/a.png",
     },
     {
       id: 2,
-      productName: "Samsung Note 2",
-      category: "Mobile",
-      subCategory: "Samsung",
-      price: "sac@gmail.com",
-      address: "Andrich Road 32 prpoerty",
-      date: "2023-06-11",
-      status: "active",
+      agentName: "Ram Maharjan",
+      designation: "Business Man",
+      experience: "7 years",
+      skill: "Marketing",
+      email: "ramc@gmail.com",
+      contactNumber: "987986787787",
+      address: "Bafal 13",
+      information:
+        "Hi My name is Ram Maharjan and I have experience in Marketing.",
+      isActive: "active",
+      uploadImage: "http://abc.mycompany.com/images/a.png",
     },
     {
       id: 3,
-      productName: "IPhone 14 Promax",
-      category: "Mobile",
-      subCategory: "Iphone",
-      price: "sac@gmail.com",
-      address: "Andrich Road 32 prpoerty",
-      date: "2023-06-11",
-      status: "in active",
+      agentName: "John Maharjan",
+      designation: "BA",
+      experience: "1 years",
+      skill: "Soft and Professional Skills",
+      email: "john@gmail.com",
+      contactNumber: "987986787787",
+      address: "Dallu, Kathmandu 16",
+      information:
+        "Hi My name is John Maharjan and I have experience in Soft and Professional Skills.",
+      isActive: "inactive",
+      uploadImage: "http://abc.mycompany.com/images/a.png",
     },
     {
       id: 4,
-      productName: "One Plus 10T",
-      category: "Mobile",
-      subCategory: "One Plus",
-      price: "sac@gmail.com",
-      address: "Andrich Road 32 prpoerty",
-      date: "2023-06-11",
-      status: "active",
+      agentName: "Sachin Maharjan",
+      designation: "Senior BA",
+      experience: "7 years",
+      skill: "Soft and Professional Skills",
+      email: "sac@gmail.com",
+      contactNumber: "987986787787",
+      address: "Balaju, Kathmandu 16",
+      information:
+        "Hi My name is Sachin Maharjan and I have experience in Soft and Professional Skills.",
+      isActive: "inactive",
+      uploadImage: "http://abc.mycompany.com/images/a.png",
     },
     {
       id: 5,
-      productName: "Rent Atradt QueensLand",
-      category: "Rent/leased",
-      subCategory: "Apartment",
-      price: "sac@gmail.com",
-      address: "Andrich Road 32 prpoerty",
-      date: "2023-06-11",
-      status: "active",
+      agentName: "Pushpa Maharjan",
+      designation: "Real Estate Principle",
+      experience: "2 years",
+      skill: "Soft and Professional Skills",
+      email: "sac@gmail.com",
+      contactNumber: "987986787787",
+      address: "Balaju, Kathmandu 16",
+      information:
+        "Hi My name is Pushpa Maharjan and I have experience as a Real Estate Principle.",
+      isActive: "inactive",
+      uploadImage: "http://abc.mycompany.com/images/a.png",
     },
     {
       id: 6,
-      productName: "Sachin Maharjan",
-      category: "Balaju",
-      subCategory: "9876785876",
-      price: "sac@gmail.com",
-      address: "Andrich Road 32 prpoerty",
-      date: "2023-06-11",
-      status: "in active",
+      agentName: "Samir Maharjan",
+      designation: ".NET Developer",
+      experience: "2 years",
+      skill: "Soft and Professional Skills",
+      email: "samir@gmail.com",
+      contactNumber: "987986787787",
+      address: "Balaju, Kathmandu 16",
+      information:
+        "Hi My name is Samir Maharjan and I have experience as a .NET Developer.",
+      isActive: "active",
+      uploadImage: "http://abc.mycompany.com/images/a.png",
     },
   ]);
 
   const [currentPage, setCurrentPage] = useState(1);
   const onPageChange = (page) => setCurrentPage(page);
   const [itemsPerPage] = useState(5);
-
   const [sortBy, setSortBy] = useState(null);
   const [sortOrder, setSortOrder] = useState("asc");
+  const [selectedRow, setSelectedRow] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleSort = (key) => {
     if (sortBy === key) {
@@ -82,10 +106,10 @@ const AgentLists = () => {
     }
   };
 
-  const sortedData = userData.sort((a, b) => {
+  const sortedData = userData.slice().sort((a, b) => {
     if (sortBy) {
       const compareValue = a[sortBy] > b[sortBy] ? 1 : -1;
-      return sortOrder === "asc" ? compareValue : compareValue * -1;
+      return sortOrder === "asc" ? compareValue : -compareValue;
     }
     return 0;
   });
@@ -99,8 +123,8 @@ const AgentLists = () => {
 
   const renderStatusLabelColor = (status) => {
     switch (status) {
-      case "in active":
-        return <Badge color="failure">In Active</Badge>;
+      case "inactive":
+        return <Badge color="failure">Inactive</Badge>;
       case "active":
         return <Badge color="success">Active</Badge>;
       default:
@@ -112,6 +136,15 @@ const AgentLists = () => {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = sortedData.slice(indexOfFirstItem, indexOfLastItem);
 
+  const handleViewDetails = (user) => {
+    setSelectedRow(user);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <div className="container">
       <div className="py-4 overflow-x-auto">
@@ -120,26 +153,14 @@ const AgentLists = () => {
             <Table.HeadCell onClick={() => handleSort("id")}>
               {getSortIcon("id")} ID
             </Table.HeadCell>
-            <Table.HeadCell onClick={() => handleSort("productName")}>
-              {getSortIcon("productName")} Agent Name
+            <Table.HeadCell onClick={() => handleSort("agentName")}>
+              {getSortIcon("agentName")} Agent Name
             </Table.HeadCell>
-            <Table.HeadCell onClick={() => handleSort("productName")}>
-              {getSortIcon("category")} Designation
+            <Table.HeadCell onClick={() => handleSort("designation")}>
+              {getSortIcon("designation")} Designation
             </Table.HeadCell>
-            <Table.HeadCell onClick={() => handleSort("status")}>
-              {getSortIcon("subCategory")} Experience
-            </Table.HeadCell>
-            <Table.HeadCell onClick={() => handleSort("deliveryOptions")}>
-              {getSortIcon("price")} Email
-            </Table.HeadCell>
-            <Table.HeadCell onClick={() => handleSort("deliveryDate")}>
-              {getSortIcon("address")} Address
-            </Table.HeadCell>
-            <Table.HeadCell onClick={() => handleSort("deliveryDate")}>
-              {getSortIcon("date")} Contact Number
-            </Table.HeadCell>
-            <Table.HeadCell onClick={() => handleSort("deliveryDate")}>
-              {getSortIcon("status")} Date
+            <Table.HeadCell onClick={() => handleSort("isActive")}>
+              {getSortIcon("isActive")} Is Active
             </Table.HeadCell>
             <Table.HeadCell>Action</Table.HeadCell>
           </Table.Head>
@@ -147,15 +168,11 @@ const AgentLists = () => {
             {currentItems.map((user) => (
               <Table.Row key={user.id}>
                 <Table.Cell>{user.id}</Table.Cell>
-                <Table.Cell>{user.productName}</Table.Cell>
-                <Table.Cell>{user.category}</Table.Cell>
-                <Table.Cell>{user.subCategory}</Table.Cell>
-                <Table.Cell>{user.price}</Table.Cell>
-                <Table.Cell>{user.address}</Table.Cell>
-                <Table.Cell>{renderStatusLabelColor(user.status)}</Table.Cell>
-                <Table.Cell>{user.date}</Table.Cell>
+                <Table.Cell>{user.agentName}</Table.Cell>
+                <Table.Cell>{user.designation}</Table.Cell>
+                <Table.Cell>{renderStatusLabelColor(user.isActive)}</Table.Cell>
                 <Table.Cell>
-                  <Button>View</Button>
+                  <Button onClick={() => handleViewDetails(user)}>View</Button>
                 </Table.Cell>
               </Table.Row>
             ))}
@@ -170,6 +187,43 @@ const AgentLists = () => {
           showIcons
         />
       </div>
+      <Modal show={isModalOpen} onClose={handleCloseModal}>
+        {selectedRow && (
+          <div className="modal-content">
+            <div className="modal-header">
+              <button className="close-btn" onClick={handleCloseModal}>
+                &times;
+              </button>
+            </div>
+            <div className="modal-body">
+              <h2 className="modal-title">Details</h2>
+              <hr />
+              <p>
+                <strong>Full name:</strong> {selectedRow.agentName}
+              </p>
+              <p>
+                <strong>Designation:</strong> {selectedRow.designation}
+              </p>
+              <p>
+                <strong>Experience:</strong> {selectedRow.experience}
+              </p>
+              <p>
+                <strong>Email Address:</strong> {selectedRow.email}
+              </p>
+              <p>
+                <strong>Address:</strong> {selectedRow.address}
+              </p>
+              <p>
+                <strong>Contact Number:</strong> {selectedRow.contactNumber}
+              </p>
+              <p>
+                <strong>Detail Information:</strong>
+              </p>
+              <p>{selectedRow.information}</p>
+            </div>
+          </div>
+        )}
+      </Modal>
     </div>
   );
 };
