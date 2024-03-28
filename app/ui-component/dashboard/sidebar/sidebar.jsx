@@ -78,55 +78,95 @@ const menuItems = [
     ],
   },
   {
-    title: "Repair",
+    title: "Other Info",
     list: [
       {
-        title: "Add Repair",
-        path: "",
+        title: "Add Agent",
+        path: "/dashboard/agent",
+        icon: <MdWork />,
+        submenu: [
+          {
+            title: "Agent List",
+            path: "/dashboard/agent/agentList",
+            icon: <MdWork />,
+            // submenu: [
+            //   // Nested submenu
+            //   {
+            //     title: "Submenu Item 1",
+            //     path: "/dashboard/submenu1",
+            //     icon: <MdDashboard />,
+            //   },
+            //   {
+            //     title: "Submenu Item 2",
+            //     path: "/dashboard/submenu2",
+            //     icon: <MdDashboard />,
+            //   },
+            // ],
+          },
+        ],
+      },
+      {
+        title: "Contact Details",
+        path: "/dashboard/contactDetails",
         icon: <MdWork />,
       },
       {
-        title: "Repair Lists",
-        path: "",
-        icon: <MdAnalytics />,
-      },
-      {
-        title: "Repair Inquery",
-        path: "",
-        icon: <MdPeople />,
-      },
-      {
-        title: "Repair Customer Details",
-        path: "",
-        icon: <MdPeople />,
-      },
-    ],
-  },
-  {
-    title: "Compare",
-    list: [
-      {
-        title: "Compare Model",
-        path: "",
+        title: "About Information",
+        path: "/dashboard/aboutInformation",
         icon: <MdWork />,
       },
-      {
-        title: "Compare Model Lists",
-        path: "",
-        icon: <MdAnalytics />,
-      },
     ],
   },
-  {
-    title: "Customer",
-    list: [
-      {
-        title: "Registered Customer",
-        path: "/dashboard/userdetails",
-        icon: <MdSupervisedUserCircle />,
-      },
-    ],
-  },
+  // {
+  //   title: "Repair",
+  //   list: [
+  //     {
+  //       title: "Add Repair",
+  //       path: "",
+  //       icon: <MdWork />,
+  //     },
+  //     {
+  //       title: "Repair Lists",
+  //       path: "",
+  //       icon: <MdAnalytics />,
+  //     },
+  //     {
+  //       title: "Repair Inquery",
+  //       path: "",
+  //       icon: <MdPeople />,
+  //     },
+  //     {
+  //       title: "Repair Customer Details",
+  //       path: "",
+  //       icon: <MdPeople />,
+  //     },
+  //   ],
+  // },
+  // {
+  //   title: "Compare",
+  //   list: [
+  //     {
+  //       title: "Compare Model",
+  //       path: "",
+  //       icon: <MdWork />,
+  //     },
+  //     {
+  //       title: "Compare Model Lists",
+  //       path: "",
+  //       icon: <MdAnalytics />,
+  //     },
+  //   ],
+  // },
+  // {
+  //   title: "Customer",
+  //   list: [
+  //     {
+  //       title: "Registered Customer",
+  //       path: "/dashboard/userdetails",
+  //       icon: <MdSupervisedUserCircle />,
+  //     },
+  //   ],
+  // },
   {
     title: "User",
     list: [
